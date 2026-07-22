@@ -1,4 +1,4 @@
-# Acero Industrial — Sitio corporativo
+# Aceros Ocotlán — Un mundo de acero
 
 Sitio web corporativo para distribución de acero y materiales industriales: catálogo de productos, sucursales, historia, blog técnico y formulario de cotización.
 
