@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+/*
+ * Paleta corporativa e industrial:
+ * - steel:  grises azulados para fondos y superficies oscuras
+ * - accent: naranja industrial para llamadas a la acción
+ */
+@theme {
+  --color-steel-50: #f6f7f9;
+  --color-steel-100: #eceef2;
+  --color-steel-200: #d5dae2;
+  --color-steel-300: #b1bac8;
+  --color-steel-400: #8694a9;
+  --color-steel-500: #67778f;
+  --color-steel-600: #525f76;
+  --color-steel-700: #434d60;
+  --color-steel-800: #3a4251;
+  --color-steel-900: #242933;
+  --color-steel-950: #181c24;
+
+  --color-accent-400: #ffa53d;
+  --color-accent-500: #f97e16;
+  --color-accent-600: #e05e08;
+  --color-accent-700: #b9440b;
+
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  touch-action: pan-y;
+}
+
+body {
+  @apply bg-steel-50 text-steel-900 antialiased;
+  max-width: 100%;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+}
+
+#root {
+  max-width: 100%;
+}
