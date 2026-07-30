@@ -14,7 +14,13 @@ function TarjetaProducto({ nombre, descripcion, imagen, icono: Icono = Box }) {
     <article className="group flex flex-col overflow-hidden rounded-sm border border-steel-200 bg-white transition-shadow hover:shadow-lg">
       <div className="flex h-44 items-center justify-center bg-steel-100">
         {imagen ? (
-          <img src={imagen} alt={nombre} className="h-full w-full object-cover" />
+          <img
+            src={imagen}
+            alt={nombre}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
         ) : (
           <Icono size={56} className="text-steel-400 transition-colors group-hover:text-accent-500" />
         )}

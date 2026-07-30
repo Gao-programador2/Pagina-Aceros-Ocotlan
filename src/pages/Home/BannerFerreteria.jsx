@@ -25,7 +25,7 @@ function BannerFerreteria() {
             Contamos con diferentes productos de acero y ferretería para darte las mejores opciones
             de construcción con la mejor calidad del mercado y al mejor precio.
           </p>
-
+{/** 
           <Link
             to="/categoria-producto/productos/"
             className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-[#0d47a1] bg-white px-6 py-2.5 text-sm font-medium text-[#0d47a1] transition-colors hover:bg-blue-50"
@@ -33,7 +33,7 @@ function BannerFerreteria() {
             Ver catálogo
             <CircleArrowRight size={18} />
           </Link>
-
+*/}
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href="tel:3339680608"

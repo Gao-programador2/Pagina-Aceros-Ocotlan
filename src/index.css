@@ -5,7 +5,25 @@
  * - steel:  grises azulados para fondos y superficies oscuras
  * - accent: naranja industrial para llamadas a la acción
  */
+:root {
+  --background: #ffffff;
+  --foreground: #242933;
+  --muted: #eceef2;
+  --muted-foreground: #67778f;
+  --border: #d5dae2;
+  --ui-accent: #e8eef6;
+  --ring: #0d47a1;
+}
+
 @theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--ui-accent);
+  --color-ring: var(--ring);
+
   --color-steel-50: #f6f7f9;
   --color-steel-100: #eceef2;
   --color-steel-200: #d5dae2;
@@ -41,3 +59,34 @@ body {
 #root {
   max-width: 100%;
 }
+
+/*
+ * reCAPTCHA v3: ocultamos la insignia flotante para que no tape WhatsApp.
+ * Permitido por Google si se muestra el aviso de Privacidad/Términos en el formulario.
+ */
+.grecaptcha-badge {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Popups y controles mapcn (web / MapLibre) */
+.maplibregl-popup-content {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.maplibregl-popup-tip {
+  display: none !important;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: inherit;
+}
+
+.maplibregl-marker {
+  cursor: pointer;
+}
+

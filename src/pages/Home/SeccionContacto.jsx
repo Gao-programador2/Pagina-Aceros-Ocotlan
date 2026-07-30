@@ -1,48 +1,72 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ReCAPTCHA from 'react-google-recaptcha';
+import RecaptchaV2 from '../../components/common/RecaptchaV2.jsx';
 
 const CAMPO =
   'w-full rounded-md border border-steel-200 bg-white px-4 py-2.5 text-sm text-steel-800 placeholder-steel-400 outline-none transition-shadow focus:border-[#0d47a1] focus:ring-2 focus:ring-[#0d47a1]/20';
 
-/** Clave de sitio: .env → VITE_RECAPTCHA_SITE_KEY (en dev usa la de prueba de Google si no hay .env) */
-const RECAPTCHA_SITE_KEY =
-  import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_zXzJxlqG';
+/** Clave de sitio v2 (también en .env como VITE_RECAPTCHA_SITE_KEY) */
+const RECAPTCHA_SITE_KEY = String(
+  import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LcN9GAtAAAAAHyFQ0h-beFCvzCN-hsHJ5iZBlHQ',
+).trim();
 
 function SeccionContacto() {
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
   const [tokenCaptcha, setTokenCaptcha] = useState(null);
   const [errorCaptcha, setErrorCaptcha] = useState('');
-  const captchaRef = useRef(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
+
+  const reiniciarCaptcha = () => {
+    setTokenCaptcha(null);
+    setCaptchaKey((n) => n + 1);
+  };
 
   const manejarEnvio = (evento) => {
     evento.preventDefault();
     setErrorCaptcha('');
+
+    const datos = new FormData(evento.target);
+    if (datos.get('website')) {
+      setEnviado(true);
+      evento.target.reset();
+      reiniciarCaptcha();
+      return;
+    }
 
     if (!tokenCaptcha) {
       setErrorCaptcha('Completa el reCAPTCHA para continuar.');
       return;
     }
 
-    // TODO: enviar tokenCaptcha al backend para verificar con la secret key
+    setEnviando(true);
+    // TODO: enviar datos + tokenCaptcha al backend con RECAPTCHA_SECRET_KEY
     setEnviado(true);
-    setTokenCaptcha(null);
-    captchaRef.current?.reset();
     evento.target.reset();
+    reiniciarCaptcha();
+    setEnviando(false);
   };
 
   return (
     <section id="contacto" className="scroll-mt-28 bg-white">
-      {/* Línea divisoria superior (apenas visible) */}
       <div className="h-px w-full bg-[#c5ccd6]" aria-hidden="true" />
       <div className="h-10 sm:h-14" aria-hidden="true" />
 
-      {/* Contenedor del formulario */}
       <div className="border-y border-[#c5ccd6] bg-[#dce3eb]">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:py-16">
           <h2 className="text-3xl font-semibold text-[#0d47a1] sm:text-4xl">Contáctanos</h2>
 
           <form onSubmit={manejarEnvio} className="mt-8 space-y-5">
+            <input
+              id="contacto-website"
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute -left-[9999px] h-0 w-0 opacity-0"
+            />
+
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label htmlFor="contacto-nombre" className="mb-1.5 block text-sm text-steel-800">
@@ -115,49 +139,52 @@ function SeccionContacto() {
               />
             </div>
 
-            <label className="flex items-start gap-2.5 text-sm text-steel-700">
+            <div className="flex items-start gap-2.5 text-sm text-steel-700">
               <input
+                id="contacto-privacidad"
                 type="checkbox"
                 name="privacidad"
                 required
                 className="mt-0.5 h-4 w-4 shrink-0 rounded border-steel-300 text-[#0d47a1] focus:ring-[#0d47a1]"
               />
-              <span>
+              <label htmlFor="contacto-privacidad" className="cursor-pointer">
                 Acepto la{' '}
                 <Link
                   to="/aviso-de-privacidad"
                   className="underline underline-offset-2 hover:text-[#0d47a1]"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   política de privacidad
                 </Link>
-              </span>
-            </label>
+              </label>
+            </div>
 
-            <div>
-              <ReCAPTCHA
-                ref={captchaRef}
+            <div className="overflow-x-auto">
+              <RecaptchaV2
+                key={captchaKey}
                 sitekey={RECAPTCHA_SITE_KEY}
                 onChange={(token) => {
                   setTokenCaptcha(token);
                   setErrorCaptcha('');
                 }}
                 onExpired={() => setTokenCaptcha(null)}
-                onErrored={() => {
+                onError={() => {
                   setTokenCaptcha(null);
-                  setErrorCaptcha('No se pudo cargar el reCAPTCHA. Revisa tu conexión e inténtalo de nuevo.');
+                  setErrorCaptcha(
+                    'Error de reCAPTCHA. Abre el sitio en http://localhost:5173 y en Google Admin agrega: localhost, 127.0.0.1, 192.168.100.67, acerosocotlan.mx',
+                  );
                 }}
-                hl="es"
               />
-              {errorCaptcha && (
-                <p className="mt-2 text-sm text-red-600">{errorCaptcha}</p>
-              )}
             </div>
+
+            {errorCaptcha && <p className="text-sm text-red-600">{errorCaptcha}</p>}
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-[#0d47a1] py-3.5 text-base font-medium text-white transition-colors hover:bg-[#0a3a85]"
+              disabled={enviando}
+              className="w-full rounded-lg bg-[#0d47a1] py-3.5 text-base font-medium text-white transition-colors hover:bg-[#0a3a85] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Enviar
+              {enviando ? 'Enviando…' : 'Enviar'}
             </button>
 
             {enviado && (
@@ -169,7 +196,6 @@ function SeccionContacto() {
         </div>
       </div>
 
-      {/* Franja blanca inferior + línea divisoria */}
       <div className="h-10 sm:h-14" aria-hidden="true" />
       <div className="h-px w-full bg-[#c5ccd6]" aria-hidden="true" />
     </section>

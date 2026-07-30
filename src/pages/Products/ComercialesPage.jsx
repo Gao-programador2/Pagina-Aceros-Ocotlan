@@ -1,38 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import imagenRedondos from '../../assets/Redondos.jpg';
-import imagenCuadrados from '../../assets/Cuadrados.jpg';
-import imagenAngulos from '../../assets/Angulos.jpg';
-import imagenTeeZeta from '../../assets/Tee y Zeta.jpg';
-import imagenPulidos from '../../assets/Pulidos.jpg';
-import imagenPolinMonten from '../../assets/Polin Monten.jpg';
-import imagenSoleras from '../../assets/Soleras.jpg';
+import {
+  AZUL_PRODUCTOS,
+  RUTA_PRODUCTOS,
+  TituloRutaProductos,
+} from './TituloRutaProductos.jsx';
+import { PRODUCTOS_COMERCIALES, rutaProductoComercial } from './comercialesData.js';
 
-const AZUL = '#1a4789';
 const WHATSAPP_URL =
   'https://wa.me/523339680608?text=Hola,%20quiero%20solicitar%20una%20cotizaci%C3%B3n%20de%20productos%20Comerciales';
-
-const PRODUCTOS = [
-  {
-    nombre: 'Redondos',
-    imagen: imagenRedondos,
-    to: '/categoria-producto/productos/comerciales/redondos',
-  },
-  {
-    nombre: 'Cuadrados',
-    imagen: imagenCuadrados,
-    to: '/categoria-producto/productos/comerciales/cuadrados',
-  },
-  { nombre: 'Ángulos', imagen: imagenAngulos },
-  {
-    nombre: 'Tee y Zeta',
-    imagen: imagenTeeZeta,
-    to: '/categoria-producto/productos/comerciales/tee-y-zeta',
-  },
-  { nombre: 'Pulidos', imagen: imagenPulidos },
-  { nombre: 'Polín Monten', imagen: imagenPolinMonten },
-  { nombre: 'Soleras', imagen: imagenSoleras },
-];
 
 function IconoWhatsApp({ className }) {
   return (
@@ -48,71 +24,64 @@ function IconoWhatsApp({ className }) {
 function ComercialesPage() {
   const navegar = useNavigate();
 
-  const volver = () => {
-    if (window.history.length > 1) {
-      navegar(-1);
-      return;
-    }
-    navegar('/#productos');
-  };
-
   return (
     <section className="relative bg-[#f3f4f6] pb-10 pt-6 sm:pt-8">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Encabezado */}
         <div className="mb-5 sm:mb-6">
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <button
               type="button"
-              onClick={volver}
-              aria-label="Regresar"
+              onClick={() => navegar(RUTA_PRODUCTOS)}
+              aria-label="Regresar a Productos"
               className="-ml-1 flex h-10 w-10 shrink-0 items-center justify-center text-[#1a4789] transition-opacity hover:opacity-70 sm:-ml-2"
             >
               <ChevronLeft size={32} strokeWidth={1.75} />
             </button>
-            <h1
-              className="text-2xl font-bold sm:text-3xl lg:text-4xl"
-              style={{ color: AZUL }}
-            >
-              Comerciales
-            </h1>
+            <div className="min-w-0 flex-1">
+              <TituloRutaProductos
+                segmentos={[
+                  { label: 'Productos', to: RUTA_PRODUCTOS },
+                  { label: 'Comerciales' },
+                ]}
+              />
+            </div>
           </div>
           <p className="mt-3 max-w-3xl pl-10 text-left text-sm leading-relaxed text-[#555] sm:pl-12 sm:text-base">
-            Contamos con una amplia variedad de perfiles para usos comerciales, construcción e
-            industriales.
+            Productos comerciales de acero para construcción, herrería y usos generales.
           </p>
         </div>
 
-        {/* Grid de productos */}
         <div className="rounded-2xl bg-[#e8eaee] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {PRODUCTOS.map((producto) => {
+            {PRODUCTOS_COMERCIALES.map((producto) => {
               const clasesBoton =
-                'inline-flex min-w-[70%] items-center justify-center rounded-lg px-4 py-2 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:text-base';
+                'inline-flex min-w-[70%] max-w-full items-center justify-center rounded-lg px-4 py-2 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:text-base';
 
               return (
                 <article
-                  key={producto.nombre}
+                  key={producto.slug}
                   className="overflow-hidden rounded-xl bg-[#dfe3ea] p-3 sm:p-3.5"
                 >
                   <div className="overflow-hidden rounded-lg">
                     <img
                       src={producto.imagen}
                       alt={producto.nombre}
+                      loading="lazy"
+                      decoding="async"
                       className="aspect-[4/3] w-full object-cover"
                     />
                   </div>
                   <div className="mt-3 flex justify-center">
                     {producto.to ? (
                       <Link
-                        to={producto.to}
+                        to={rutaProductoComercial(producto.slug)}
                         className={clasesBoton}
-                        style={{ backgroundColor: AZUL }}
+                        style={{ backgroundColor: AZUL_PRODUCTOS }}
                       >
                         {producto.nombre}
                       </Link>
                     ) : (
-                      <span className={clasesBoton} style={{ backgroundColor: AZUL }}>
+                      <span className={clasesBoton} style={{ backgroundColor: AZUL_PRODUCTOS }}>
                         {producto.nombre}
                       </span>
                     )}
@@ -127,7 +96,7 @@ function ComercialesPage() {
           <p className="text-center text-sm text-[#666] sm:text-left">
             ¿Buscas otra categoría?{' '}
             <Link
-              to="/#productos"
+              to={RUTA_PRODUCTOS}
               className="font-medium text-[#1a4789] underline underline-offset-2"
             >
               Volver a Productos

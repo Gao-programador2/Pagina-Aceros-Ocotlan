@@ -3,6 +3,8 @@ import { ChevronLeft } from 'lucide-react';
 import imagenSlitter from '../../assets/Corte-Slitter-scaled.jpg';
 import imagenBeneficios from '../../assets/Beneficios Corte Slitter.png';
 import imagenTablaCorte from '../../assets/Tabla Corte Slitter.png';
+import { TituloRutaProductos } from '../Products/TituloRutaProductos.jsx';
+import { RUTA_SERVICIOS } from './serviciosData.js';
 
 const AZUL = '#1a4789';
 const WHATSAPP_URL =
@@ -29,35 +31,29 @@ function IconoWhatsApp({ className }) {
 function CorteSlitterPage() {
   const navegar = useNavigate();
 
-  const volver = () => {
-    if (window.history.length > 1) {
-      navegar(-1);
-      return;
-    }
-    navegar('/#servicios');
-  };
-
   return (
     <section className="relative bg-[#f3f4f6] pb-10 pt-6 sm:pt-8">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="rounded-2xl bg-white px-4 py-6 shadow-sm sm:px-8 sm:py-8 lg:px-10">
           {/* Encabezado */}
           <div className="mb-5 sm:mb-6">
-            <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
               <button
                 type="button"
-                onClick={volver}
-                aria-label="Regresar"
+                onClick={() => navegar(RUTA_SERVICIOS)}
+                aria-label="Regresar a Servicios"
                 className="-ml-4 flex h-10 w-10 shrink-0 items-center justify-center text-[#1a4789] transition-opacity hover:opacity-70 sm:-ml-6"
               >
                 <ChevronLeft size={32} strokeWidth={1.75} />
               </button>
-              <h1
-                className="text-2xl font-bold text-[#1a4789] sm:text-3xl lg:text-4xl"
-                style={{ color: AZUL }}
-              >
-                Corte slitter
-              </h1>
+              <div className="min-w-0 flex-1">
+                <TituloRutaProductos
+                  segmentos={[
+                    { label: 'Servicios', to: RUTA_SERVICIOS },
+                    { label: 'Corte Slitter' },
+                  ]}
+                />
+              </div>
             </div>
             <p className="mt-3 max-w-3xl pl-9 text-left text-sm leading-relaxed text-[#444] sm:pl-12 sm:text-base">
             Fabricamos el polín en su forma C o en Z, con perforación o sin ella, en el largo requerido del proyecto, brindando ahorro en tiempo de la construcción.
@@ -136,7 +132,7 @@ function CorteSlitterPage() {
           <p className="text-center text-sm text-[#666] sm:text-left">
             ¿Buscas otro servicio?{' '}
             <Link
-              to="/#servicios"
+              to="/servicios"
               className="font-medium text-[#1a4789] underline underline-offset-2"
             >
               Volver a Servicios

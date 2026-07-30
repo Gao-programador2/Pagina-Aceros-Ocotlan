@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import fondo from '../../assets/fondo.png';
+import fondoMovil from '../../assets/PORTADA DE PÁG. WEB camión_MOVIL.png';
 import textoBanner from '../../assets/Texto.png';
 
 const SUCURSALES_POR_ESTADO = {
@@ -425,12 +426,24 @@ function BannerEncabezado() {
 
   return (
     <section className="relative -mt-[7.5rem] flex min-h-[100svh] items-center overflow-hidden text-white md:-mt-32 md:min-h-[88vh]">
-      {/* Imagen de fondo: en móvil enfoca más el acero (parte baja) */}
+      {/* Imagen de fondo: móvil y escritorio */}
       <img
         src={fondo}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_72%] sm:object-[center_60%] md:object-center"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-center md:block"
+      />
+      <img
+        src={fondoMovil}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[center_40%] md:hidden"
       />
 
       {/* Capa oscura ligera: deja apreciar la imagen de fondo */}
@@ -441,12 +454,17 @@ function BannerEncabezado() {
         <img
           src={textoBanner}
           alt="Lo que hace fuerte a México"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           className="w-56 max-w-full drop-shadow-2xl sm:w-80 lg:w-96"
         />
 
-        {/* Selects de estado y sucursal */}
-        <div className="mt-10 flex w-full max-w-2xl flex-col justify-center gap-3 sm:mt-20 sm:flex-row sm:gap-4">
+        {/* Selects de estado y sucursal (centrados como pareja) */}
+        <div className="mt-10 flex w-full max-w-2xl flex-col items-center justify-center gap-3 sm:mt-20 sm:flex-row sm:gap-4">
           <select
+            id="banner-estado"
+            name="estado"
             value={estado}
             onChange={manejarCambioEstado}
             aria-label="Selecciona un estado"
@@ -463,6 +481,8 @@ function BannerEncabezado() {
           </select>
 
           <select
+            id="banner-sucursal"
+            name="sucursal"
             value={sucursal}
             onChange={(evento) => setSucursal(evento.target.value)}
             disabled={!estado}

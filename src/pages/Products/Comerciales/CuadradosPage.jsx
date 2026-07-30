@@ -2,8 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import imagenCuadrados from '../../../assets/Cuadrados.jpg';
 import imagenTablaCuadrados from '../../../assets/Cuadrados-11.png';
+import {
+  RUTA_COMERCIALES,
+  RUTA_PRODUCTOS,
+  TituloRutaProductos,
+} from '../TituloRutaProductos.jsx';
 
-const AZUL = '#1a4789';
 const WHATSAPP_URL =
   'https://wa.me/523339680608?text=Hola,%20quiero%20solicitar%20una%20cotizaci%C3%B3n%20de%20Cuadrados';
 
@@ -21,27 +25,30 @@ function IconoWhatsApp({ className }) {
 function CuadradosPage() {
   const navegar = useNavigate();
 
-  const volver = () => {
-    if (window.history.length > 1) {
-      navegar(-1);
-      return;
-    }
-    navegar('/categoria-producto/productos/comerciales');
-  };
-
   return (
     <section className="relative bg-[#f3f4f6] pb-10 pt-6 sm:pt-8">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="rounded-2xl bg-white px-4 py-5 shadow-sm sm:px-6 sm:py-6 lg:px-8">
+        <div className="mb-4 flex min-w-0 items-center gap-3 sm:mb-5 sm:gap-4">
           <button
             type="button"
-            onClick={volver}
-            aria-label="Regresar"
-            className="-ml-1 mb-4 flex h-10 w-10 items-center justify-center text-[#1a4789] transition-opacity hover:opacity-70 sm:-ml-2"
+            onClick={() => navegar(RUTA_COMERCIALES)}
+            aria-label="Regresar a Comerciales"
+            className="-ml-1 flex h-10 w-10 shrink-0 items-center justify-center text-[#1a4789] transition-opacity hover:opacity-70 sm:-ml-2"
           >
             <ChevronLeft size={32} strokeWidth={1.75} />
           </button>
+          <div className="min-w-0 flex-1">
+          <TituloRutaProductos
+            segmentos={[
+              { label: 'Productos', to: RUTA_PRODUCTOS },
+              { label: 'Comerciales', to: RUTA_COMERCIALES },
+              { label: 'Cuadrados' },
+            ]}
+          />
+          </div>
+        </div>
 
+        <div className="rounded-2xl bg-white px-4 py-5 shadow-sm sm:px-6 sm:py-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="overflow-hidden rounded-xl">
               <img
@@ -52,13 +59,7 @@ function CuadradosPage() {
             </div>
 
             <div className="flex min-w-0 flex-col">
-              <h1
-                className="text-2xl font-bold sm:text-3xl lg:text-4xl"
-                style={{ color: AZUL }}
-              >
-                Cuadrados
-              </h1>
-              <p className="mt-3 text-sm leading-relaxed text-[#555] sm:text-base">
+              <p className="mt-0 text-sm leading-relaxed text-[#555] sm:text-base">
                 Barra de acero cuadrada, se usa para construir estructuras metálicas, piezas
                 forjadas, son de amplio uso en la herrería.
               </p>

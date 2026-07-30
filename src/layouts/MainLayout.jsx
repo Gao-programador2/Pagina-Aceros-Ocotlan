@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Navbar from '../components/layout/Navbar.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import AlertaFraude from '../components/common/AlertaFraude.jsx';
+import BotonWhatsAppFlotante from '../components/common/BotonWhatsAppFlotante.jsx';
 
 /**
  * Plantilla principal del sitio.
@@ -46,10 +47,11 @@ function MainLayout() {
   return (
     <div className="flex min-h-screen max-w-full flex-col">
       <AlertaFraude />
+      <BotonWhatsAppFlotante />
 
       {enHistoria ? (
         <>
-          {/* Contenedor: el sticky del navbar solo vive aquí, no llega al footer */}
+          {/* Contenedor de sticky del navbar */}
           <div className="relative">
             <Navbar />
             <main className="min-w-0">

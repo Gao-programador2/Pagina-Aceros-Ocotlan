@@ -8,6 +8,7 @@ import imagenPlanos from '../../assets/Planos.png';
 import imagenPerfilesTubulares from '../../assets/Tubulares-y-Tuberias.png';
 import imagenEstructurales from '../../assets/Estructurales.png';
 import imagenComerciales from '../../assets/Comerciales.png';
+import catalogoProductosPdf from '../../assets/CATALOGO_PRODUCTOS_2026.pdf';
 
 const PRODUCTOS = [
   {
@@ -18,7 +19,7 @@ const PRODUCTOS = [
   {
     nombre: 'Perfiles tubulares y Tuberías',
     imagen: imagenPerfilesTubulares,
-    to: '/categoria-producto/productos/perfiles-tubulares',
+    to: '/categoria-producto/productos/perfiles-tubulares-y-tuberias',
   },
   {
     nombre: 'Estructurales',
@@ -116,7 +117,11 @@ function CarruselProductos() {
 
   return (
     <div id="productos" className="relative mt-14 scroll-mt-28">
-      <h2 className="mb-6 text-3xl font-medium text-[#0d47a1] sm:text-4xl">Productos</h2>
+      <h2 className="mb-6 text-3xl font-medium text-[#0d47a1] sm:text-4xl">
+        <Link to="/productos" className="transition-opacity hover:opacity-80">
+          Productos
+        </Link>
+      </h2>
 
       {/* Botón izquierdo */}
       <button
@@ -143,6 +148,7 @@ function CarruselProductos() {
                     alt={producto.nombre}
                     className="h-full w-full object-cover"
                     loading="lazy"
+                    decoding="async"
                     draggable={false}
                   />
                 </div>
@@ -171,8 +177,8 @@ function CarruselProductos() {
       {/* Descargar catálogo */}
       <div className="mt-10 flex justify-center">
         <a
-          href="/catalogo-productos.pdf"
-          download
+          href={catalogoProductosPdf}
+          download="CATALOGO_PRODUCTOS_2026.pdf"
           className="inline-flex items-center gap-2.5 rounded-full bg-[#0d47a1] px-8 py-3 text-sm font-medium text-white underline underline-offset-2 shadow-md transition-colors hover:bg-[#0a3a85] sm:text-base"
         >
           <FileDown size={18} />

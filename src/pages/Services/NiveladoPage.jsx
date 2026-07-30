@@ -4,6 +4,8 @@ import imagenNivelado from '../../assets/Niveladora-scaled.jpg';
 import imagenBeneficios from '../../assets/Beneficios Nivelado.png';
 import imagenTablaCaliente from '../../assets/Tabala Nivelado 1.png';
 import imagenTablaFria from '../../assets/Tabla Nivelado 2.png';
+import { TituloRutaProductos } from '../Products/TituloRutaProductos.jsx';
+import { RUTA_SERVICIOS } from './serviciosData.js';
 
 const AZUL = '#1a4789';
 const WHATSAPP_URL =
@@ -32,35 +34,29 @@ function IconoWhatsApp({ className }) {
 function NiveladoPage() {
   const navegar = useNavigate();
 
-  const volver = () => {
-    if (window.history.length > 1) {
-      navegar(-1);
-      return;
-    }
-    navegar('/#servicios');
-  };
-
   return (
     <section className="relative bg-[#f3f4f6] pb-10 pt-6 sm:pt-8">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="rounded-2xl bg-white px-4 py-6 shadow-sm sm:px-8 sm:py-8 lg:px-10">
           {/* Encabezado */}
           <div className="mb-5 sm:mb-6">
-            <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
               <button
                 type="button"
-                onClick={volver}
-                aria-label="Regresar"
+                onClick={() => navegar(RUTA_SERVICIOS)}
+                aria-label="Regresar a Servicios"
                 className="-ml-4 flex h-10 w-10 shrink-0 items-center justify-center text-[#1a4789] transition-opacity hover:opacity-70 sm:-ml-6"
               >
                 <ChevronLeft size={32} strokeWidth={1.75} />
               </button>
-              <h1
-                className="text-2xl font-bold text-[#1a4789] sm:text-3xl lg:text-4xl"
-                style={{ color: AZUL }}
-              >
-                Nivelado
-              </h1>
+              <div className="min-w-0 flex-1">
+                <TituloRutaProductos
+                  segmentos={[
+                    { label: 'Servicios', to: RUTA_SERVICIOS },
+                    { label: 'Nivelado' },
+                  ]}
+                />
+              </div>
             </div>
             <p className="mt-3 max-w-3xl pl-9 text-left text-sm leading-relaxed text-[#444] sm:pl-12 sm:text-base">
             Consiste en desenrollar y cortar la lámina y dejarla completamente lisa en forma de hoja, de tal manera que no presente curvatura alguna, esta transformación puede ser para: Lámina antiderrapante, caliente, decapada, fria, galvanizada y placa hasta 7/8 de espesor; permitiendo tener una lámina sin ondulaciones y a la medida, perfecta para el sector industrial.
@@ -146,7 +142,7 @@ Al finalizar, podemos obtener una hoja procesada en diferentes anchos, desde 20�
           <p className="text-center text-sm text-[#666] sm:text-left">
             ¿Buscas otro servicio?{' '}
             <Link
-              to="/#servicios"
+              to="/servicios"
               className="font-medium text-[#1a4789] underline underline-offset-2"
             >
               Volver a Servicios

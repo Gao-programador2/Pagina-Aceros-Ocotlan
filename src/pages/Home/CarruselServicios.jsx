@@ -3,46 +3,8 @@ import { Link } from 'react-router-dom';
 import useEmblaCarousel from 'embla-carousel-react';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import { ChevronLeft, ChevronRight, FileDown } from 'lucide-react';
-import imagenNivelado from '../../assets/Niveladora-scaled.jpg';
-import imagenCorteSlitter from '../../assets/Corte-Slitter-scaled.jpg';
-import imagenCizalla from '../../assets/Cizalla-1-scaled.jpg';
-import imagenFabricacionDePolin from '../../assets/Fabricacion-de-Polin-1-scaled.jpg';
-import imagenAcanaladoDeLamina from '../../assets/Acanalado-de-Lamina-2.jpg';
-import imagenHabilitadoDeVarilla from '../../assets/Habilitado-de-Varilla-1-scaled.jpg';
-
-
-const SERVICIOS = [
-  {
-    nombre: 'Nivelado',
-    imagen: imagenNivelado,
-    to: '/servicios/nivelado',
-  },
-  {
-    nombre: 'Corte Slitter',
-    imagen:imagenCorteSlitter,
-    to: '/servicios/corte-slitter',
-  },
-  {
-    nombre: 'Cizalla',
-    imagen:imagenCizalla,
-    to: '/servicios/cizalla',
-  },
-  {
-    nombre: 'Fabricación de Polín',
-    imagen: imagenFabricacionDePolin,
-    to: '/servicios/fabricacion-de-polin',
-  },
-  {
-    nombre: 'Acanalado de Lámina',
-    imagen: imagenAcanaladoDeLamina,
-    to: '/servicios/acanalado-de-lamina',
-  },
-  {
-    nombre: 'Habilitado de Varilla',
-    imagen: imagenHabilitadoDeVarilla,
-    to: '/servicios/habilitado-de-varilla',
-  },
-];
+import catalogoServiciosPdf from '../../assets/CATALOGO_SERVICIOS_2026.pdf';
+import { SERVICIOS } from '../Services/serviciosData.js';
 
 function CarruselServicios() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -91,6 +53,7 @@ function CarruselServicios() {
                       alt={servicio.nombre}
                       className="h-full w-full object-cover"
                       loading="lazy"
+                      decoding="async"
                       draggable={false}
                     />
                   </div>
@@ -117,8 +80,8 @@ function CarruselServicios() {
 
         <div className="mt-10 flex justify-center">
           <a
-            href="/catalogo-servicios.pdf"
-            download
+            href={catalogoServiciosPdf}
+            download="CATALOGO_SERVICIOS_2026.pdf"
             className="inline-flex items-center gap-2.5 rounded-full bg-[#0d47a1] px-8 py-3 text-sm font-medium text-white underline underline-offset-2 shadow-md transition-colors hover:bg-[#0a3a85] sm:text-base"
           >
             <FileDown size={18} />

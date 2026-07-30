@@ -1,97 +1,138 @@
-import { useState, useRef, useEffect } from 'react';
-import { MapPin, Plus, Minus, X } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { MapPin, Plus, Minus, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import logoAcerosOcotlan from '../../assets/AO_Logo.png';
+import imagenArenaGdl from '../../assets/Arena GDL.jpg';
+import imagenMacroBus from '../../assets/Estaciones de MacroBus.jpg';
+import imagenHardRock from '../../assets/Hotel Hard Rock.jpg';
+import imagenEncatameTower from '../../assets/Encátame Tower.jpg';
+import imagenEstadioOlimpico from '../../assets/Estadio Olímpico Pascual Guerrero.jpg';
+import imagenEstadioSaraperos from '../../assets/Estadios Saraperos de Saltillo.png';
+import imagenEntrebosques from '../../assets/Entrebosques.jpg';
+import imagenDuo24 from '../../assets/Duo 24 Living.jpg';
+import imagenBecton from '../../assets/Becton Dickinson.jpeg';
+import imagenHotelBaruk from '../../assets/Hotel Baruk.jpg';
+import imagenHotelDreams from '../../assets/Hotel Dreams.jpg';
+import imagenIkea from '../../assets/IKEA.jpg';
+import imagenLaboratorioPisa from '../../assets/Laboratorios Pisa.jpg';
+import imagenLinea3 from '../../assets/Línea 3 tren ligero.png';
+import imagenLiverpool from '../../assets/Liverpool.jpg';
+import imagenMidtown from '../../assets/Midtown Fashion Mall.png';
+import imagenNestle from '../../assets/Nestlé.jpg';
+import imagenPalacio from '../../assets/Palacio Municipal Ensenada.jpg';
 
 const OBRAS_INICIALES = [
   {
-    nombre: 'Centro Médico Puerta de Hierro',
+    nombre: 'Arena GDL',
     ubicacion: 'Guadalajara, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    nombre: 'Mid Town',
-    ubicacion: 'Guadalajara, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    nombre: 'Palacio Municipal Ensenada B.C.',
-    ubicacion: 'Baja California, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80',
+    imagen: imagenArenaGdl,
   },
   {
     nombre: 'Estaciones del Macro Bus',
     ubicacion: 'Guadalajara, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80',
+    imagen: imagenMacroBus,
   },
   {
-    nombre: 'Liverpool',
-    ubicacion: 'Toluca, Puebla, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1555636222-cae9630d4d0b?auto=format&fit=crop&w=800&q=80',
+    nombre: 'Hotel Hard Rock',
+    ubicacion: '',
+    imagen: imagenHardRock,
   },
   {
-    nombre: 'Puente Matute Remus',
-    ubicacion: 'Guadalajara, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80',
+    nombre: 'Encátame Tower',
+    ubicacion: '',
+    imagen: imagenEncatameTower,
+   },
+  {
+    nombre: 'Estadio Olímpico Pascual Guerrero',
+    ubicacion: 'Cali, Colombia',
+    imagen: imagenEstadioOlimpico,
   },
+  {
+    nombre: 'Estadios Saraperos de Saltillo',
+    ubicacion: 'Saltillo, Mx.',
+    imagen: imagenEstadioSaraperos,
+    },
 ];
 
 const OBRAS_EXTRA = [
   {
-    nombre: 'Torre Aura Altitude',
-    ubicacion: 'Zapopan, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
+    nombre: 'Entre bosques',
+    ubicacion: '',
+    imagen: imagenEntrebosques,
   },
   {
-    nombre: 'Andares Corporativo',
-    ubicacion: 'Zapopan, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+    nombre: 'Duo 24 Living',
+    ubicacion: '',
+    imagen: imagenDuo24,
   },
   {
-    nombre: 'Hospital Civil Nuevo',
+    nombre: 'Becton Dickinson',
+    ubicacion: '',
+    imagen: imagenBecton,
+  },
+  {
+    nombre: 'Hotel Baruk',
     ubicacion: 'Guadalajara, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80',
+    imagen: imagenHotelBaruk,
   },
   {
-    nombre: 'Plaza Galerías',
-    ubicacion: 'Guadalajara, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1567521464027-f127ff144326?auto=format&fit=crop&w=800&q=80',
+    nombre: 'Hotel Dreams',
+    ubicacion: '',
+    imagen: imagenHotelDreams,
   },
   {
-    nombre: 'Aeropuerto Internacional',
-    ubicacion: 'Tijuana, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1436491865332-7a61a109cab0?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    nombre: 'Centro Cultural',
-    ubicacion: 'Puerto Vallarta, Mx.',
-    imagen:
-      'https://images.unsplash.com/photo-1464146072230-91cabc968266?auto=format&fit=crop&w=800&q=80',
+    nombre: 'IKEA',
+    ubicacion: '',
+    imagen: imagenIkea,
   },
 ];
+
+const OBRAS_EXTRA3 = [
+  {
+    nombre: 'Laboratorios Pisa',
+    ubicacion: 'Guadalajara, Mx.',
+    imagen: imagenLaboratorioPisa,
+  },
+  {
+    nombre: 'Línea 3 tren ligero',
+    ubicacion: 'Guadalajara, Mx.',
+    imagen: imagenLinea3,
+  },
+  {
+    nombre: 'Liverpool',
+    ubicacion: '',
+    imagen: imagenLiverpool,
+  },
+  {
+    nombre: 'Midtown Fashion Mall',
+    ubicacion: 'Guadalajara, Mx.',
+    imagen: imagenMidtown,
+  },
+  {
+    nombre: 'Nestlé',
+    ubicacion: '',
+    imagen: imagenNestle,
+  },
+  {
+    nombre: 'Palacio Municipal Ensenada',
+    ubicacion: 'Ensenada, Mx.',
+    imagen: imagenPalacio,
+  },
+];
+const UMBRAL_DESLIZAR = 50;
 
 function TarjetaObra({ nombre, ubicacion, imagen, onAbrir }) {
   return (
     <button
       type="button"
-      onClick={() => onAbrir({ nombre, ubicacion, imagen })}
-      className="group relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl text-left"
+      onClick={onAbrir}
+      className="group relative aspect-[2/1] w-full cursor-pointer overflow-hidden rounded-2xl text-left"
     >
       <img
         src={imagen}
         alt={nombre}
         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
+        decoding="async"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-4 text-white">
@@ -105,21 +146,59 @@ function TarjetaObra({ nombre, ubicacion, imagen, onAbrir }) {
   );
 }
 
-function ModalObra({ obra, onCerrar }) {
+function ModalObra({ obras, indice, onCambiar, onCerrar }) {
+  const obra = obras[indice];
+  const toqueInicioX = useRef(null);
+
+  const irAnterior = useCallback(() => {
+    onCambiar((indice - 1 + obras.length) % obras.length);
+  }, [indice, obras.length, onCambiar]);
+
+  const irSiguiente = useCallback(() => {
+    onCambiar((indice + 1) % obras.length);
+  }, [indice, obras.length, onCambiar]);
+
   useEffect(() => {
     const overflowAnterior = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    const alPresionarEscape = (evento) => {
-      if (evento.key === 'Escape') onCerrar();
+    const alPresionarTecla = (evento) => {
+      if (evento.key === 'Escape') {
+        onCerrar();
+        return;
+      }
+      if (evento.key === 'ArrowLeft') {
+        evento.preventDefault();
+        irAnterior();
+        return;
+      }
+      if (evento.key === 'ArrowRight') {
+        evento.preventDefault();
+        irSiguiente();
+      }
     };
-    window.addEventListener('keydown', alPresionarEscape);
+    window.addEventListener('keydown', alPresionarTecla);
 
     return () => {
       document.body.style.overflow = overflowAnterior;
-      window.removeEventListener('keydown', alPresionarEscape);
+      window.removeEventListener('keydown', alPresionarTecla);
     };
-  }, [onCerrar]);
+  }, [onCerrar, irAnterior, irSiguiente]);
+
+  const alIniciarToque = (evento) => {
+    toqueInicioX.current = evento.changedTouches[0]?.clientX ?? null;
+  };
+
+  const alTerminarToque = (evento) => {
+    if (toqueInicioX.current == null) return;
+    const finX = evento.changedTouches[0]?.clientX ?? toqueInicioX.current;
+    const delta = finX - toqueInicioX.current;
+    toqueInicioX.current = null;
+
+    if (Math.abs(delta) < UMBRAL_DESLIZAR) return;
+    if (delta > 0) irAnterior();
+    else irSiguiente();
+  };
 
   return (
     <div
@@ -138,20 +217,47 @@ function ModalObra({ obra, onCerrar }) {
         <X size={22} />
       </button>
 
+      <button
+        type="button"
+        onClick={(evento) => {
+          evento.stopPropagation();
+          irAnterior();
+        }}
+        aria-label="Obra anterior"
+        className="absolute left-2 top-1/2 z-[110] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25 sm:left-4 sm:flex"
+      >
+        <ChevronLeft size={28} />
+      </button>
+
+      <button
+        type="button"
+        onClick={(evento) => {
+          evento.stopPropagation();
+          irSiguiente();
+        }}
+        aria-label="Obra siguiente"
+        className="absolute right-2 top-1/2 z-[110] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25 sm:right-4 sm:flex"
+      >
+        <ChevronRight size={28} />
+      </button>
+
       <div
-        className="relative w-full max-w-5xl overflow-hidden rounded-xl shadow-2xl"
+        className="relative w-full max-w-5xl touch-pan-y overflow-hidden rounded-xl bg-[#1a1a1a] shadow-2xl"
         onClick={(evento) => evento.stopPropagation()}
+        onTouchStart={alIniciarToque}
+        onTouchEnd={alTerminarToque}
       >
         <img
           src={obra.imagen}
           alt={obra.nombre}
-          className="max-h-[85vh] w-full object-cover object-center"
+          loading="eager"
+          decoding="async"
+          className="mx-auto max-h-[85vh] w-full select-none object-contain object-center"
+          draggable={false}
         />
 
-        {/* Gradiente inferior para legibilidad */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/13 via-black/14 to-transparent" />
 
-        {/* Capa transparente detrás del texto y logo */}
         <div className="absolute inset-x-0 bottom-0 bg-black/25 backdrop-blur-[1px]">
           <div className="flex items-end justify-between gap-4 p-4 sm:p-8">
             <div className="min-w-0 text-white">
@@ -167,6 +273,8 @@ function ModalObra({ obra, onCerrar }) {
             <img
               src={logoAcerosOcotlan}
               alt="Aceros Ocotlán"
+              loading="lazy"
+              decoding="async"
               className="h-10 w-auto shrink-0 object-contain drop-shadow-md sm:h-14"
             />
           </div>
@@ -177,22 +285,33 @@ function ModalObra({ obra, onCerrar }) {
 }
 
 function ObrasConstruidas() {
-  const [mostrarMas, setMostrarMas] = useState(false);
-  const [obraSeleccionada, setObraSeleccionada] = useState(null);
+  // 0 = solo iniciales, 1 = iniciales + OBRAS_EXTRA, 2 = todo completo
+  const [pasoObras, setPasoObras] = useState(0);
+  const [indiceSeleccionado, setIndiceSeleccionado] = useState(null);
   const seccionRef = useRef(null);
-  const obras = mostrarMas ? [...OBRAS_INICIALES, ...OBRAS_EXTRA] : OBRAS_INICIALES;
 
-  const alternarMasObras = () => {
-    if (mostrarMas) {
-      setMostrarMas(false);
-      // Vuelve a la parte superior de la sección (las primeras imágenes)
+  // Construir el listado dinámicamente según el paso actual
+  const obras = (() => {
+    if (pasoObras === 0) return OBRAS_INICIALES;
+    if (pasoObras === 1) return [...OBRAS_INICIALES, ...OBRAS_EXTRA];
+    return [...OBRAS_INICIALES, ...OBRAS_EXTRA, ...OBRAS_EXTRA3];
+  })();
+
+  const manejarBotonObras = () => {
+    if (pasoObras < 2) {
+      // Avanzar al siguiente bloque de obras
+      setPasoObras((prev) => prev + 1);
+    } else {
+      // Si ya está en el máximo, contraer de regreso al inicio y hacer scroll suave
+      setPasoObras(0);
+      setIndiceSeleccionado(null);
       requestAnimationFrame(() => {
         seccionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
-      return;
     }
-    setMostrarMas(true);
   };
+
+  const estaTodoMostrado = pasoObras === 2;
 
   return (
     <section ref={seccionRef} className="scroll-mt-4 bg-[#0d47a1] px-4 py-12 sm:py-16">
@@ -207,11 +326,11 @@ function ObrasConstruidas() {
 
         <div className="mt-8 rounded-3xl bg-white p-5 sm:p-8 lg:p-10">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-            {obras.map((obra) => (
+            {obras.map((obra, indice) => (
               <TarjetaObra
-                key={obra.nombre}
+                key={`${obra.nombre}-${obra.imagen}-${indice}`}
                 {...obra}
-                onAbrir={setObraSeleccionada}
+                onAbrir={() => setIndiceSeleccionado(indice)}
               />
             ))}
           </div>
@@ -219,21 +338,23 @@ function ObrasConstruidas() {
           <div className="mt-8 flex justify-center">
             <button
               type="button"
-              onClick={alternarMasObras}
-              aria-label={mostrarMas ? 'Ver menos obras' : 'Ver más obras'}
-              aria-expanded={mostrarMas}
+              onClick={manejarBotonObras}
+              aria-label={estaTodoMostrado ? 'Ver menos obras' : 'Ver más obras'}
+              aria-expanded={estaTodoMostrado}
               className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0d47a1] text-white shadow-md transition-transform hover:scale-105 hover:bg-[#0a3a85]"
             >
-              {mostrarMas ? <Minus size={22} strokeWidth={2.5} /> : <Plus size={22} strokeWidth={2.5} />}
+              {estaTodoMostrado ? <Minus size={22} strokeWidth={2.5} /> : <Plus size={22} strokeWidth={2.5} />}
             </button>
           </div>
         </div>
       </div>
 
-      {obraSeleccionada && (
+      {indiceSeleccionado !== null && (
         <ModalObra
-          obra={obraSeleccionada}
-          onCerrar={() => setObraSeleccionada(null)}
+          obras={obras}
+          indice={indiceSeleccionado}
+          onCambiar={setIndiceSeleccionado}
+          onCerrar={() => setIndiceSeleccionado(null)}
         />
       )}
     </section>
