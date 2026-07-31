@@ -1,7 +1,7 @@
 import fondoEscritorio from '../../assets/fondo.png';
 import fondoMovil from '../../assets/PORTADA DE PÁG. WEB camión_MOVIL.png';
 
-/** Contenido legal compartido (aviso de privacidad / términos). */
+/** Aviso de privacidad. */
 export const SECCIONES_AVISO_PRIVACIDAD = [
   {
     titulo: '1. Identidad y domicilio del responsable',
@@ -92,7 +92,7 @@ function ListaNumerada({ items }) {
 }
 
 /**
- * Plantilla visual legal (fondo + contenedor cristal como Transparencia).
+ * Imagen de fondo.
  *
  * @param {{ titulo: string, secciones?: typeof SECCIONES_AVISO_PRIVACIDAD }} props
  */
