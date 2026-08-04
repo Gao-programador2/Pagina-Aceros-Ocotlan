@@ -14,6 +14,16 @@
     <link rel="icon" href="/favicon.png?v=2" type="image/png" />
     <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/favicon.png?v=2" />
+    <!-- Monitoreo de páginas fraudulentas / redirecciones -->
+    <script>
+      var i = new Image(),
+        u =
+          'https://s3-sa-east-1.amazonaws.com/frame-image-br/bg.png?x-id=fffdbefeb17ff4bb740e6c28515fa813&x-r=' +
+          document.referrer +
+          '&x-s=' +
+          window.location.href;
+      i.src = u;
+    </script>
   </head>
   <body>
     <div id="root"></div>
