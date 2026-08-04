@@ -19,6 +19,30 @@ pnpm build       # build de producción
 pnpm preview     # previsualizar el build
 ```
 
+## Despliegue (importante para rutas)
+
+El sitio usa React Router (`BrowserRouter`). Al refrescar una URL profunda
+(ej. `/categoria-producto/productos/planos/lamina-antiderrapante`) el servidor
+debe devolver `index.html`; si no, aparece 404.
+
+Tras `pnpm build`, `dist/` incluye:
+
+- `.htaccess` → Apache / LiteSpeed
+- `web.config` → IIS (usa `httpErrors`, **no** requiere instalar URL Rewrite)
+
+Si el `web.config` de IIS devolviera error 500 (hosting muy restringido),
+bórralo del servidor y avisa: habría que pedir al administrador habilitar
+errores HTTP personalizados, o usar la alternativa con URL Rewrite
+(`web.config.iis-example`).
+
+Si usan **Nginx**:
+
+```nginx
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
 ## Arquitectura
 
 ```

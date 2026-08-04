@@ -1,0 +1,7 @@
+# Nginx (si el servidor usa Nginx, copia esto en el server block):
+#
+# location / {
+#   try_files $uri $uri/ /index.html;
+# }
+#
+# No se copia automáticamente al dist; es referencia para quien administra el servidor.

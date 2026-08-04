@@ -1,4 +1,4 @@
-import insigniaIso9001 from '../../assets/insignia-globalstd-iso9001-100x100.png';
+import insigniaIso9001 from '../../assets/LOGO ISO 9001.png';
 
 /**
  * Banner horizontal de certificación ISO 9001.
