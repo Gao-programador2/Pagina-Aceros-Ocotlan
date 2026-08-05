@@ -13,7 +13,7 @@ function GrapasPage() {
       tabla={tablaGrapas}
       altImagen="Grapas galvanizadas y negras"
       altTabla="Tabla de especificaciones de Grapas"
-      descripcion="Grapas para cercado y fijación, disponibles en versiones negra y galvanizada (corrugada, Negra “V” y Corcel III). Se ofrecen en distintos calibres y longitudes, en cajas de 25 kg o cajas con 25 bolsas de 1 kg."
+      descripcion="Las grapas galvanizadas son sujetadores metálicos, generalmente en forma de U, que han sido recubiertos con una capa de zinc mediante un proceso de galvanización. Este recubrimiento protege las grapas de la corrosión, haciéndolas más duraderas y resistentes a la oxidación. Se utilizan comúnmente en construcción, carpintería y jardinería para fijar o asegurar materiales como alambres, mallas o cercas."
     />
   );
 }

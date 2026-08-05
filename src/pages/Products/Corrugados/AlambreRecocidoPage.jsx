@@ -13,7 +13,7 @@ function AlambreRecocidoPage() {
       tabla={tablaAlambreRecocido}
       altImagen={"Rollos de alambre recocido negro"}
       altTabla={"Tabla de especificaciones de Alambre recocido"}
-      descripcion={"Alambre recocido negro, dúctil y fácil de trabajar, utilizado para amarre de acero de refuerzo, embobinado y usos generales en construcción e industria."}
+      descripcion={"El alambre recocido es un tipo de alambre que ha sido sometido a un proceso donde se calienta y luego se enfría lentamente para aumentar su maleabilidad y flexibilidad. Este tratamiento térmico reduce la dureza del acero, facilitando su manejo y uso en diversas aplicaciones, como la construcción, atado de materiales, y en la fabricación de productos de alambre. Es comúnmente utilizado en la construcción y manufactura por su facilidad para doblarse y torcerse sin romperse."}
     />
   );
 }

@@ -10,7 +10,7 @@ function LaminaAntiderrapantePage() {
       tabla={tabla}
       altImagen="Lámina y placa antiderrapante"
       altTabla="Tabla de especificaciones de Lámina y placa antiderrapante"
-      descripcion="Lámina y placa antiderrapante en distintos calibres y espesores, con pesos teóricos para medidas 3×8, 4×8, 3×10 y 4×10. Los pesos pueden variar según el espesor."
+      descripcion="Una lámina antiderrapante es un material metálico diseñado para proporcionar una superficie que previene deslizamientos y caídas. Tiene un patrón texturizado o estriado que aumenta el agarre y la tracción. Se utiliza comúnmente en pisos industriales, escaleras y plataformas para mejorar la seguridad en entornos con alta probabilidad de humedad o contaminación."
     />
   );
 }

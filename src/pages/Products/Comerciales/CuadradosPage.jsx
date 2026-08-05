@@ -60,8 +60,7 @@ function CuadradosPage() {
 
             <div className="flex min-w-0 flex-col">
               <p className="mt-0 text-sm leading-relaxed text-[#555] sm:text-base">
-                Barra de acero cuadrada, se usa para construir estructuras metálicas, piezas
-                forjadas, son de amplio uso en la herrería.
+              Un cuadrado, también conocido como barra cuadrada de acero, es un perfil metálico con una sección transversal cuadrada. Es apreciado por su versatilidad, resistencia y facilidad de procesamiento, lo que lo convierte en un material clave en diversas aplicaciones industriales y de construcción.
               </p>
 
               <div className="mt-5 overflow-hidden rounded-lg">

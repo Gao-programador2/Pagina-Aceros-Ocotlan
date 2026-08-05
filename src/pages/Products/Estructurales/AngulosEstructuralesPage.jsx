@@ -10,7 +10,7 @@ function AngulosEstructuralesPage() {
       tabla={tablaAngulos}
       altImagen="Ángulos estructurales de acero"
       altTabla="Tabla de especificaciones de Ángulos"
-      descripcion="Ángulos de acero para estructuras, herrería y refuerzos. Disponibles en distintas dimensiones (pulgadas y mm) con peso por metro y por pieza."
+      descripcion="Un ángulo es un perfil metálico en forma de 'L' con dos alas perpendiculares entre sí. Se utiliza para proporcionar soporte estructural en construcciones y ensamblajes. Sus alas pueden tener igual o diferente longitud, y su diseño permite distribuir cargas y resistir fuerzas de manera eficiente. Es común en aplicaciones de construcción, fabricación de maquinaria y estructuras metálicas. La forma del ángulo facilita su uso en esquinas y uniones de estructuras."
     />
   );
 }

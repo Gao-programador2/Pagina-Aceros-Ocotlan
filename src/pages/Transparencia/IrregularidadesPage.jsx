@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, FilePlus2 } from 'lucide-react';
-import { CORREOS_IRREGULARIDADES } from '../../config/transparenciaEnv.js';
+import { apiFetch } from '../../config/api.js';
 
 const AZUL = '#1a4789';
 const RUTA_TRANSPARENCIA = '/transparencia-ao/';
@@ -42,6 +42,8 @@ function IrregularidadesPage() {
   const navegar = useNavigate();
   const inputArchivoRef = useRef(null);
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [errorEnvio, setErrorEnvio] = useState('');
   const [archivos, setArchivos] = useState([]);
   const [formulario, setFormulario] = useState({
     tipoPersona: '',
@@ -73,17 +75,39 @@ function IrregularidadesPage() {
     if (lista.length) setArchivos((prev) => [...prev, ...lista]);
   };
 
-  const alEnviar = (evento) => {
+  const alEnviar = async (evento) => {
     evento.preventDefault();
-    const destinarios = CORREOS_IRREGULARIDADES;
-    // TODO: enviar denuncia al backend con destinarios
-    if (!destinarios.length) {
-      console.warn(
-        'Falta VITE_TRANSPARENCIA_IRREGULARIDADES_CORREOS en .env',
-      );
+    setErrorEnvio('');
+    setEnviando(true);
+
+    try {
+      const datos = new FormData();
+      datos.append('tipo_persona', formulario.tipoPersona);
+      datos.append('sucursal', formulario.sucursal);
+      datos.append('puesto', formulario.puesto);
+      datos.append('nombres_implicados', formulario.nombresImplicados);
+      datos.append('area', formulario.area);
+      datos.append('fecha_suceso', formulario.fechaSuceso);
+      datos.append('hora_suceso', formulario.horaSuceso);
+      datos.append('tipo_irregularidad', formulario.tipoIrregularidad);
+      datos.append('narracion', formulario.narracion);
+      datos.append('sugerencias', formulario.sugerencias);
+      datos.append('correo', formulario.correo);
+      datos.append('telefono', formulario.telefono);
+      archivos.forEach((archivo) => datos.append('archivos', archivo));
+
+      await apiFetch('/api/transparencia/irregularidades', {
+        method: 'POST',
+        body: datos,
+      });
+
+      setEnviado(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      setErrorEnvio(error?.message || 'No se pudo enviar la denuncia. Intenta de nuevo.');
+    } finally {
+      setEnviando(false);
     }
-    setEnviado(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (enviado) {
@@ -380,10 +404,15 @@ function IrregularidadesPage() {
 
           <button
             type="submit"
-            className="mt-8 w-full rounded-full bg-[#1a4789] px-6 py-3.5 text-base font-semibold text-white shadow-md transition-colors hover:bg-[#163a70]"
+            disabled={enviando}
+            className="mt-8 w-full rounded-full bg-[#1a4789] px-6 py-3.5 text-base font-semibold text-white shadow-md transition-colors hover:bg-[#163a70] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Enviar
+            {enviando ? 'Enviando…' : 'Enviar'}
           </button>
+
+          {errorEnvio && (
+            <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{errorEnvio}</p>
+          )}
         </form>
       </div>
     </section>

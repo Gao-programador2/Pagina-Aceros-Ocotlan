@@ -13,7 +13,7 @@ function ClavosPage() {
       tabla={tablaClavos}
       altImagen="Clavos galvanizados"
       altTabla="Tabla de especificaciones de Clavos"
-      descripcion="Clavos galvanizados para carpintería, concreto y usos generales. Disponibles en clavo estándar con cabeza, clavo para concreto y clavo tomatero, en distintos largos y calibres, en cajas de 25 kg o cajas con 25 bolsas de 1 kg."
+      descripcion="Los clavos galvanizados son clavos recubiertos con una capa de zinc para protegerlos contra la corrosión y el óxido. Este recubrimiento hace que sean ideales para aplicaciones exteriores o en ambientes húmedos, donde la resistencia a la oxidación es crucial. Se utilizan en construcción, carpintería y otras tareas donde la durabilidad a largo plazo es importante."
     />
   );
 }

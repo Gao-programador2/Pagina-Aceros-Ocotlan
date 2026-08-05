@@ -13,7 +13,7 @@ function AlambrePuasPage() {
       tabla={tablaAlambrePuas}
       altImagen={"Rollo de alambre de púas galvanizado"}
       altTabla={"Tabla de especificaciones de Alambre de púas"}
-      descripcion={"Alambre de púas galvanizado de dos hilos retorcidos, ideal para cercos perimetrales, potreros y protección de predios. Ofrece alta resistencia mecánica y cumple con la norma ASTM A-121."}
+      descripcion={"El Alambre de púas es un tipo de cercado compuesto por un cable de acero con puntas afiladas distribuidas a lo largo de su longitud. Estas púas están diseñadas para disuadir o impedir el paso de personas o animales. Es comúnmente utilizado en áreas rurales, instalaciones de seguridad y para delimitar propiedades. Su resistencia y durabilidad lo hacen efectivo en la protección de terrenos y bienes."}
     />
   );
 }

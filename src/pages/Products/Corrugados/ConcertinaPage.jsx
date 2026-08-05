@@ -13,7 +13,7 @@ function ConcertinaPage() {
       tabla={tablaConcertina}
       altImagen={"Concertina comercial con cuchillas tipo arpón"}
       altTabla={"Información de Concertina comercial"}
-      descripcion={"Concertina comercial galvanizada con cuchillas tipo arpón de filo de bisturí, fabricada para protección en bardas y cercas de residencias, deportivos, aeropuertos, bodegas y más. Se empaca en cajas de cartón para un manejo seguro."}
+      descripcion={"Una concertina comercial es un tipo de alambre de púas en forma de espiral o bobina que se utiliza principalmente para seguridad perimetral. Está fabricada con láminas de acero y a menudo tiene púas afiladas o cuchillas que disuaden o impiden el acceso no autorizado. Las concertinas se despliegan y expanden fácilmente, formando barreras efectivas en zonas industriales, militares y residenciales. Son valoradas por su alta resistencia, durabilidad y capacidad de brindar una protección robusta en áreas vulnerables."}
     />
   );
 }

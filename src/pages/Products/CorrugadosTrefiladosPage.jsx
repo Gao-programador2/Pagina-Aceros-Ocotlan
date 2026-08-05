@@ -48,8 +48,7 @@ function CorrugadosTrefiladosPage() {
             </div>
           </div>
           <p className="mt-3 max-w-3xl pl-10 text-left text-sm leading-relaxed text-[#555] sm:pl-12 sm:text-base">
-            Alambres, mallas, varilla y armaduras para cercado, construcción y usos industriales,
-            con acabados galvanizados de alta resistencia.
+          Ofrecemos varilla corrugada en diámetros y longitudes estandar o especiales, certificadas bajo normas internacionales.
           </p>
         </div>
 

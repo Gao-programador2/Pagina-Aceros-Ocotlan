@@ -10,7 +10,7 @@ function VigaIpsPage() {
       tabla={tablaVigaIps}
       altImagen="Vigas IPS de acero"
       altTabla="Tabla de especificaciones de Viga IPS"
-      descripcion="Vigas IPS para estructuras metálicas, con datos de peralte, peso, área y propiedades en ejes X-X y Y-Y, además de medidas para detallado."
+      descripcion="Una Viga IPS es un tipo de viga estructural con perfil en forma de 'I', utilizada en la construcción para soportar cargas pesadas. El término 'IPS' se refiere a su clasificación dentro de un estándar específico de dimensiones y propiedades mecánicas. Estas vigas son comunes en edificaciones, puentes y otras estructuras donde se requiere resistencia y estabilidad."
     />
   );
 }

@@ -10,7 +10,7 @@ function TuboEstructuralPage() {
       tabla={tabla}
       altImagen="Tubo estructural de acero"
       altTabla="Tabla de especificaciones de Tubo estructural"
-      descripcion="Tubo estructural con longitud estándar de 12.20 m. Fabricado bajo normas ASTM A-120, ASTM A-53 y API 5L Gr. B y X-42, con distintos espesores de pared, cédulas y pesos por metro."
+      descripcion="Un tubo estructural es un perfil metálico cilíndrico utilizado en la construcción y la ingeniería para formar parte de estructuras y soportes. Su diseño permite una alta resistencia y rigidez, facilitando el soporte de cargas pesadas y la estabilidad de las estructuras. Se utiliza comúnmente en edificios, puentes y otras aplicaciones de construcción. Su sección transversal puede ser circular, cuadrada o rectangular."
     />
   );
 }

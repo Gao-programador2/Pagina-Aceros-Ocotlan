@@ -13,7 +13,7 @@ function VarillaCorrugadaPage() {
       tabla={tablaVarilla}
       altImagen={"Varillas corrugadas de acero de refuerzo"}
       altTabla={"Tabla de especificaciones de Varilla corrugada"}
-      descripcion={"Varilla corrugada de alta resistencia para refuerzo de concreto. Disponible en grados ASTM A-615 y G-6000, con distintos diámetros, pesos unitarios y presentaciones estándar."}
+      descripcion={"Una varilla es un elemento de construcción alargado y cilíndrico, fabricado en acero para proporcionar soporte estructural. Se utiliza principalmente en la construcción de concreto armado, donde se integra en la mezcla para mejorar la resistencia a la tracción y la flexión. Las varillas de acero están disponibles en diferentes diámetros y longitudes, adaptándose a diversas necesidades estructurales. Su resistencia y durabilidad hacen que sean esenciales en la construcción de edificaciones y obras de ingeniería."}
     />
   );
 }

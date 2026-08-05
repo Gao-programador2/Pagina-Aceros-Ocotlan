@@ -10,7 +10,7 @@ function LaminaNegraPage() {
       tabla={tabla}
       altImagen="Lámina negra de acero"
       altTabla="Tabla de especificaciones de Lámina negra"
-      descripcion="Lámina negra rolada en caliente, LCR/LRF y rolada en frío, con pesos por medida (3×6 a 4×10) y kg/m² según calibre y espesor."
+      descripcion="La lámina negra es una hoja de acero sin recubrimiento, utilizada principalmente en la construcción y manufactura. Destaca por su versatilidad, siendo ideal para soldar, cortar y moldear. Es comúnmente empleada en la fabricación de estructuras metálicas, refuerzos y soportes, debido a su resistencia y facilidad de procesamiento en proyectos industriales."
     />
   );
 }

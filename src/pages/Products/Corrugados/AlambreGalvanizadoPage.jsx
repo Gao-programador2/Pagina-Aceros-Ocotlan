@@ -13,7 +13,7 @@ function AlambreGalvanizadoPage() {
       tabla={tablaAlambreGalvanizado}
       altImagen={"Rollos de alambre galvanizado suave"}
       altTabla={"Tabla de especificaciones de Alambre galvanizado suave"}
-      descripcion={"Alambre galvanizado suave con capa de zinc uniforme, disponible en distintos calibres para amarre, cercado ligero y usos generales en obra. Incluye identificador de calibre en cada rollo y cumple con la especificación ASTM A-641."}
+      descripcion={"Un alambre galvanizado es un alambre de acero recubierto con una capa de zinc para protegerlo contra la corrosión. El proceso de galvanización crea una barrera que previene la oxidación, aumentando la durabilidad del alambre en condiciones ambientales adversas. Este tipo de alambre es utilizado en aplicaciones como cercas, construcción, agricultura y electricidad. Es valorado por su resistencia, longevidad y bajo mantenimiento, haciendo que sea ideal para usos exteriores y estructuras expuestas a la intemperie."}
     />
   );
 }

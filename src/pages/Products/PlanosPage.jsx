@@ -47,8 +47,7 @@ function PlanosPage() {
             </div>
           </div>
           <p className="mt-3 max-w-3xl pl-10 text-left text-sm leading-relaxed text-[#555] sm:pl-12 sm:text-base">
-            Láminas y placas planas para corte, doblado y usos industriales: antiderrapante,
-            galvanizada, negra y placas.
+          Amplia selección de materiales planos: láminas galvanizadas, antiderrapantes, negras y placas, garantizando resistencia y durabilidad para cada proyecto.
           </p>
         </div>
 

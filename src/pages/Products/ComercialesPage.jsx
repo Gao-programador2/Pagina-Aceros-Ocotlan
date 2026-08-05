@@ -47,7 +47,7 @@ function ComercialesPage() {
             </div>
           </div>
           <p className="mt-3 max-w-3xl pl-10 text-left text-sm leading-relaxed text-[#555] sm:pl-12 sm:text-base">
-            Productos comerciales de acero para construcción, herrería y usos generales.
+          Contamos con una amplia variedad de perfiles para usos comerciales, construcción e industriales.
           </p>
         </div>
 

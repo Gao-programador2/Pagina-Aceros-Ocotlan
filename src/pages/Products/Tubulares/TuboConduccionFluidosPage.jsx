@@ -10,7 +10,7 @@ function TuboConduccionFluidosPage() {
       tabla={tabla}
       altImagen="Tubería para conducción de fluidos"
       altTabla="Tabla de especificaciones de tubería para conducción de fluidos"
-      descripcion="Tubería para conducción de fluidos con diámetros, espesores, cédula y presiones de prueba según ASTM-120 y ASTM-53, además de peso por metro y por pieza."
+      descripcion="Un tubo de conducción de fluidos es un conducto cilíndrico hecho de acero diseñado para transportar líquidos o gases en sistemas industriales o de construcción. Su resistencia a la corrosión y alta presión lo hace ideal para aplicaciones que requieren durabilidad y fiabilidad. Se utiliza en una variedad de industrias, como la petroquímica y la construcción, para asegurar un flujo constante y seguro de fluidos."
     />
   );
 }

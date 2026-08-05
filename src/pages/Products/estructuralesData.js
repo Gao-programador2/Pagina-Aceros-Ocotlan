@@ -6,6 +6,7 @@ import imagenHssRectangular from '../../assets/HSS rectangular.jpg';
 import imagenPlacas from '../../assets/Placas.jpg';
 import imagenVigaIpr from '../../assets/Viga IPR.jpg';
 import imagenVigaIps from '../../assets/Viga IPS.jpg';
+import imagenPolinMonten from '../../assets/Polin Monten.jpg';
 
 /**
  * Catálogo de Estructurales (listado de categoría).
@@ -21,6 +22,7 @@ export const PRODUCTOS_ESTRUCTURALES = [
   { slug: 'placas', nombre: 'Placas', imagen: imagenPlacas },
   { slug: 'viga-ipr', nombre: 'Viga IPR', imagen: imagenVigaIpr },
   { slug: 'viga-ips', nombre: 'Viga IPS', imagen: imagenVigaIps },
+  { slug: 'polin-monten', nombre: 'Polín Monten', imagen: imagenPolinMonten },
 ];
 
 export function rutaProductoEstructural(slug) {

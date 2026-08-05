@@ -10,7 +10,7 @@ function PlacasPlanosPage() {
       tabla={tablaPlacas}
       altImagen="Placas de acero"
       altTabla="Tabla de especificaciones de Placa"
-      descripcion="Placas de acero en distintas dimensiones y espesores, con peso estimado en kilogramos según medida y calibre para usos estructurales e industriales."
+      descripcion="Las placas son láminas planas y delgadas de acero, utilizadas en una amplia gama de aplicaciones industriales y de construcción. Su espesor puede variar, y se emplean para fabricar estructuras, componentes de maquinaria, y cubiertas. Las placas de acero son valoradas por su resistencia, durabilidad y capacidad para soportar cargas. Se pueden cortar, soldar y mecanizar según las necesidades específicas del proyecto."
     />
   );
 }

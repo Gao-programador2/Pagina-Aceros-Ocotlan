@@ -13,7 +13,7 @@ function CastilloArmexPage() {
       tabla={tablaCastilloArmex}
       altImagen={"Armaduras prefabricadas Castillo Armex"}
       altTabla={"Tabla de especificaciones de Castillos Armex Grado 6000"}
-      descripcion={"Castillos Armex prefabricados grado 6000 para columnas y refuerzos de concreto. Disponibles en geometrías de línea, triángulo, cuadrado y rectángulo, en piezas estándar de 6.00 m."}
+      descripcion={"Un castillo Armex es un elemento estructural prefabricado utilizado en la construcción de edificaciones para reforzar columnas, muros y castillos en estructuras de concreto. Consiste en una armadura de acero compuesta por varillas longitudinales y estribos transversales, que proporcionan resistencia adicional contra esfuerzos de compresión y flexión. Su diseño estandarizado facilita su instalación, ahorrando tiempo y mano de obra en obras. Además, es altamente efectivo para mejorar la estabilidad y la durabilidad de las construcciones."}
     />
   );
 }

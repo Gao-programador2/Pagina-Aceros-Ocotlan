@@ -13,7 +13,7 @@ function MallaCribaOrnamentalPage() {
       tabla={tablaMallaCriba}
       altImagen={"Rollo de malla criba ornamental galvanizada"}
       altTabla={"Tabla de especificaciones de Malla criba ornamental galvanizada"}
-      descripcion={"Malla criba ornamental galvanizada para protección y acabados. Disponible en aberturas de 50×50 mm y 38×38 mm, calibre 10.5, en rollos de 10 m de largo."}
+      descripcion={"Una malla criba ornamental es un tipo de malla decorativa fabricada con alambre de acero, diseñada tanto para funciones estéticas como prácticas. Sus patrones o diseños decorativos añaden un toque estético a cercas, barandales o fachadas. Además de su valor ornamental, proporciona una barrera funcional para la separación o protección en aplicaciones arquitectónicas y de diseño. Es resistente y puede ser personalizada para adaptarse a diferentes estilos y necesidades decorativas."}
     />
   );
 }

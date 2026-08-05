@@ -60,9 +60,7 @@ function PolinMontenPage() {
 
             <div className="flex min-w-0 flex-col">
               <p className="mt-0 text-sm leading-relaxed text-[#555] sm:text-base">
-                Polín Monten (perfil tipo “C”) para estructuras ligeras, techumbres y usos
-                comerciales. Disponible en distintas medidas y calibres; también fabricamos polín a
-                medidas especiales.
+              Un polín tipo C es un perfil metálico en forma de "C" utilizado en la construcción y en estructuras metálicas. tiene una sección transversal con dos alas paralelas unidas por una alma central. Su diseño facilita el soporte de cargas y la estabilidad en aplicaciones como vigas y soportes. Es versátil y se usa en la construcción de edificios, naves industriales y estructuras de soporte. Su forma optimiza la resistencia estructural y permite un ensamblaje eficiente.
               </p>
 
               <div className="mt-5 overflow-hidden rounded-lg">

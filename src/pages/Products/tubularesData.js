@@ -13,7 +13,6 @@ import imagenTuboEstructural from '../../assets/Tubo estructural.jpg';
 
 /** @type {ProductoTubular[]} */
 export const PRODUCTOS_TUBULARES = [
-  { slug: 'lamina-galvanizada', nombre: 'Lámina galvanizada', imagen: imagenLaminaGalvanizada },
   { slug: 'perfil-tubular', nombre: 'Perfil tubular', imagen: imagenPerfilTubular },
   { slug: 'ptr', nombre: 'PTR', imagen: imagenPtr },
   { slug: 'tubo-cedula', nombre: 'Tubo cédula', imagen: imagenTuboCedula },

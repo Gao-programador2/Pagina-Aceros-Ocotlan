@@ -1,11 +1,10 @@
+import { RUTA_COMERCIALES } from './TituloRutaProductos.jsx';
 import imagenRedondos from '../../assets/Redondos.jpg';
 import imagenCuadrados from '../../assets/Cuadrados.jpg';
 import imagenAngulos from '../../assets/Angulos.jpg';
 import imagenTeeZeta from '../../assets/Tee y Zeta.jpg';
-import imagenPulidos from '../../assets/Pulidos.jpg';
 import imagenPolinMonten from '../../assets/Polin Monten.jpg';
 import imagenSoleras from '../../assets/Soleras.jpg';
-import { RUTA_COMERCIALES } from './TituloRutaProductos.jsx';
 
 /**
  * Catálogo de Comerciales (listado de categoría).
@@ -32,6 +31,7 @@ export const PRODUCTOS_COMERCIALES = [
     slug: 'angulos',
     nombre: 'Ángulos',
     imagen: imagenAngulos,
+    to: `${RUTA_COMERCIALES}/angulos`,
     palabrasClave: ['angulo', 'angular'],
   },
   {
@@ -40,12 +40,6 @@ export const PRODUCTOS_COMERCIALES = [
     imagen: imagenTeeZeta,
     to: `${RUTA_COMERCIALES}/tee-y-zeta`,
     palabrasClave: ['tee', 'zeta', 't y z'],
-  },
-  {
-    slug: 'pulidos',
-    nombre: 'Pulidos',
-    imagen: imagenPulidos,
-    palabrasClave: ['pulido'],
   },
   {
     slug: 'polin-monten',

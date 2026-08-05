@@ -5,6 +5,12 @@ dist-ssr
 .env
 .env.*.local
 
+# FastAPI
+fastapi/.venv
+fastapi/__pycache__
+fastapi/**/__pycache__
+fastapi/.env
+
 # Editor
 .vscode/*
 !.vscode/extensions.json

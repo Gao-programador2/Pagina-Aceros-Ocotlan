@@ -13,7 +13,7 @@ function CribaGranoPlataLigeraPage() {
       tabla={tablaCribaPlata}
       altImagen={"Rollo de criba de grano de plata ligera"}
       altTabla={"Tabla de especificaciones de Criba de grano de plata ligera"}
-      descripcion={"Criba de grano de plata ligera galvanizada, con distintas aberturas y diámetros de alambre. Ideal para filtrado, cribado y usos industriales ligeros en rollos de 30 m."}
+      descripcion={"Una criba de grano de plata ligera es un tamiz fabricado con malla de acero utilizado en la separación y clasificación de materiales, como granos y minerales. Este tipo de criba es conocida por su ligereza y durabilidad, lo que facilita su manejo y prolonga su vida útil en operaciones industriales y agrícolas. La 'plata' en su nombre puede referirse al acabado o revestimiento que mejora su resistencia a la corrosión. Su diseño permite una eficiente filtración y separación de partículas, optimizando los procesos de tamizado y clasificación."}
     />
   );
 }

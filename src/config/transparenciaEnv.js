@@ -1,12 +1,10 @@
 /**
- * Destinatarios del buzón de Transparencia (desde .env / example.env).
- * Varios correos: sepáralos con coma en la variable.
+ * Destinatarios de Transparencia viven en el backend:
+ *   fastapi/.env → CORREOS_IRREGULARIDADES / CORREOS_FRAUDES
+ *
+ * Este archivo se mantiene por compatibilidad; el envío real va a FastAPI.
  */
 
-/**
- * @param {string | undefined} valor
- * @returns {string[]}
- */
 function parsearCorreos(valor) {
   return String(valor ?? '')
     .split(/[,;]+/)
@@ -14,12 +12,12 @@ function parsearCorreos(valor) {
     .filter(Boolean);
 }
 
-/** Primer botón: Irregularidades, abusos o mal servicio */
+/** @deprecated Usar configuración del backend (fastapi/.env) */
 export const CORREOS_IRREGULARIDADES = parsearCorreos(
   import.meta.env.VITE_TRANSPARENCIA_IRREGULARIDADES_CORREOS,
 );
 
-/** Segundo botón: Fraudes */
+/** @deprecated Usar configuración del backend (fastapi/.env) */
 export const CORREOS_FRAUDES = parsearCorreos(
   import.meta.env.VITE_TRANSPARENCIA_FRAUDES_CORREOS,
 );

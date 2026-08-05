@@ -10,7 +10,7 @@ function TuboCedulaPage() {
       tabla={tabla}
       altImagen="Tubo cédula de acero"
       altTabla="Tabla de especificaciones de Tubo cédula 30 y 40"
-      descripcion="Tubo cédula 30 (longitud 6.00 m) y cédula 40 (longitud 6.40 m), con diámetros, espesores, peso por metro y datos de empaque por paquete."
+      descripcion="Un tubo cédula es un tubo fabricado en acero con un grosor de pared específico, designado por la 'cédula' (schedule), que indica su resistencia y capacidad para soportar presión. Se utiliza en aplicaciones industriales y de construcción para transportar líquidos y gases, así como en estructuras que requieren alta durabilidad. La cédula determina el espesor de la pared del tubo y, por ende, su resistencia."
     />
   );
 }

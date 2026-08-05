@@ -60,8 +60,7 @@ function SolerasPage() {
 
             <div className="flex min-w-0 flex-col">
               <p className="mt-0 text-sm leading-relaxed text-[#555] sm:text-base">
-                Solera comercial de acero, barra plana para herrería, estructuras y usos generales.
-                Disponible en distintos espesores y anchos, con peso por metro y por pieza de 6 m.
+              Una solera comercial es un perfil metálico plano, con una sección transversal rectangular, utilizado principalmente en aplicaciones estructurales y de soporte. Se emplea en la construcción de estructuras metálicas, vigas y soportes, así como en la fabricación de componentes para maquinaria. Su diseño proporciona estabilidad y distribución uniforme de cargas. Las soleras comerciales son versátiles y se adaptan a diversas aplicaciones industriales y constructivas.
               </p>
 
               <div className="mt-5 overflow-hidden rounded-lg">

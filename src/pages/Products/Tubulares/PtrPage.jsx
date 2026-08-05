@@ -10,7 +10,7 @@ function PtrPage() {
       tabla={tabla}
       altImagen="PTR rectangular y cuadrado"
       altTabla="Tabla de medidas y pesos teóricos PTR rectangular"
-      descripcion="PTR rectangular con longitud estándar de 6.10 m. Medidas y pesos teóricos por calibre; medidas mayores de 2&quot; y calibres más gruesos que calibre 12 en especificación ASTM A-500 Grado B."
+      descripcion="Un PTR (Perfil Tubular Rectangular) es un perfil estructural hueco de acero, con sección transversal rectangular. Se utiliza en la construcción y en la fabricación de estructuras metálicas debido a su resistencia, durabilidad y versatilidad. Es común en marcos, vigas, columnas y otras aplicaciones donde se requieren estructuras ligeras pero fuertes."
     />
   );
 }

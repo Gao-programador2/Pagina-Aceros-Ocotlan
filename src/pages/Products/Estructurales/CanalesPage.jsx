@@ -10,7 +10,7 @@ function CanalesPage() {
       tabla={tablaCanales}
       altImagen="Canales estructurales de acero"
       altTabla="Tabla de especificaciones de Canales"
-      descripcion="Canales estructurales de acero con longitud estándar de 12.20 m. Disponibles en distintos peraltes y pesos; cumplen con la norma ASTM A-36."
+      descripcion="Los canales son perfiles estructurales con una sección transversal en forma de 'C' o 'U', fabricados para proporcionar soporte y estabilidad en construcciones. Se utilizan comúnmente en la construcción de estructuras metálicas, puentes y edificios para soportar cargas y distribuir el peso. Su diseño permite una combinación eficiente de resistencia y ligereza, adaptándose a diversas aplicaciones en la ingeniería y la arquitectura. Son valorados por su robustez y versatilidad en la construcción."
     />
   );
 }

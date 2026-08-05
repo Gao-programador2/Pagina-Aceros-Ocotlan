@@ -47,8 +47,7 @@ function EstructuralesPage() {
             </div>
           </div>
           <p className="mt-3 max-w-3xl pl-10 text-left text-sm leading-relaxed text-[#555] sm:pl-12 sm:text-base">
-            Perfiles estructurales para construcción e industria: ángulos, canales, HSS, placas y
-            vigas IPR e IPS.
+          Ofrecemos la más amplia variedad de medidas y grados de acero, en productos estructurales para cualquier proyecto de construcción.
           </p>
         </div>
 

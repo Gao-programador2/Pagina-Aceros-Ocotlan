@@ -47,8 +47,7 @@ function GalvanizadosPage() {
             </div>
           </div>
           <p className="mt-3 max-w-3xl pl-10 text-left text-sm leading-relaxed text-[#555] sm:pl-12 sm:text-base">
-            Clavos, grapas y artículos galvanizados para construcción, cercado y usos ferreteros,
-            con acabado resistente a la corrosión.
+          En aceros Ocotlán encontrarás productos galvanizados, necesarios para evitar la corrosión en ambientes húmedos.
           </p>
         </div>
 

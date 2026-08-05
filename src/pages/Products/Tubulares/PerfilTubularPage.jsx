@@ -14,7 +14,7 @@ function PerfilTubularPage() {
         'Tabla de especificaciones de Perfiles tubulares (1)',
         'Tabla de especificaciones de Perfiles tubulares (2)',
       ]}
-      descripcion="Perfiles tubulares para herrería y marcos, en calibre 18 o 20, con largo estándar de 6.0 m. Incluyen medidas cuadradas, rectangulares y perfiles especiales (R, MH, Zeta, pasamanos, riel, tablero, entre otros)."
+      descripcion="Un perfil tubular es una estructura hueca. Se utiliza en la construcción y fabricación por su alta resistencia y ligereza en comparación con perfiles macizos. Es común en aplicaciones como estructuras metálicas, andamios, marcos de maquinaria y sistemas de transporte. Su diseño hueco permite reducir el peso sin comprometer la resistencia estructural."
     />
   );
 }

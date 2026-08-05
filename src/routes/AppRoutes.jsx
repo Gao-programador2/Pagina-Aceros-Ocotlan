@@ -35,6 +35,33 @@ const CorrugadosTrefiladosPage = lazy(
 const GalvanizadosPage = lazy(() => import('../pages/Products/GalvanizadosPage.jsx'));
 const ClavosPage = lazy(() => import('../pages/Products/Galvanizados/ClavosPage.jsx'));
 const GrapasPage = lazy(() => import('../pages/Products/Galvanizados/GrapasPage.jsx'));
+const GalvanizadosAlambrePuasPage = lazy(
+  () => import('../pages/Products/Galvanizados/AlambrePuasPage.jsx'),
+);
+const GalvanizadosAlambreGalvanizadoPage = lazy(
+  () => import('../pages/Products/Galvanizados/AlambreGalvanizadoPage.jsx'),
+);
+const GalvanizadosConcertinaPage = lazy(
+  () => import('../pages/Products/Galvanizados/ConcertinaPage.jsx'),
+);
+const GalvanizadosCribaGranoPlataLigeraPage = lazy(
+  () => import('../pages/Products/Galvanizados/CribaGranoPlataLigeraPage.jsx'),
+);
+const GalvanizadosMallaBorregueraPage = lazy(
+  () => import('../pages/Products/Galvanizados/MallaBorregueraPage.jsx'),
+);
+const GalvanizadosMallaDePajaroPage = lazy(
+  () => import('../pages/Products/Galvanizados/MallaDePajaroPage.jsx'),
+);
+const GalvanizadosMallaCribaOrnamentalPage = lazy(
+  () => import('../pages/Products/Galvanizados/MallaCribaOrnamentalPage.jsx'),
+);
+const GalvanizadosMultimallaFerreteraPage = lazy(
+  () => import('../pages/Products/Galvanizados/MultimallaFerreteraPage.jsx'),
+);
+const GalvanizadosLaminaGalvanizadaPage = lazy(
+  () => import('../pages/Products/Galvanizados/LaminaGalvanizadaPage.jsx'),
+);
 const EstructuralesPage = lazy(() => import('../pages/Products/EstructuralesPage.jsx'));
 const AngulosEstructuralesPage = lazy(
   () => import('../pages/Products/Estructurales/AngulosEstructuralesPage.jsx'),
@@ -47,10 +74,11 @@ const HssRectangularPage = lazy(
 const PlacasPage = lazy(() => import('../pages/Products/Estructurales/PlacasPage.jsx'));
 const VigaIprPage = lazy(() => import('../pages/Products/Estructurales/VigaIprPage.jsx'));
 const VigaIpsPage = lazy(() => import('../pages/Products/Estructurales/VigaIpsPage.jsx'));
-const TubularesPage = lazy(() => import('../pages/Products/TubularesPage.jsx'));
-const LaminaGalvanizadaPage = lazy(
-  () => import('../pages/Products/Tubulares/LaminaGalvanizadaPage.jsx'),
+const EstructuralesPolinMontenPage = lazy(
+  () => import('../pages/Products/Estructurales/PolinMontenPage.jsx'),
 );
+const TubularesPage = lazy(() => import('../pages/Products/TubularesPage.jsx'));
+
 const PerfilTubularPage = lazy(() => import('../pages/Products/Tubulares/PerfilTubularPage.jsx'));
 const PtrPage = lazy(() => import('../pages/Products/Tubulares/PtrPage.jsx'));
 const TuboCedulaPage = lazy(() => import('../pages/Products/Tubulares/TuboCedulaPage.jsx'));
@@ -97,6 +125,9 @@ const VarillaCorrugadaPage = lazy(
 );
 const RedondosPage = lazy(() => import('../pages/Products/Comerciales/RedondosPage.jsx'));
 const CuadradosPage = lazy(() => import('../pages/Products/Comerciales/CuadradosPage.jsx'));
+const ComercialesAngulosPage = lazy(
+  () => import('../pages/Products/Comerciales/AngulosPage.jsx'),
+);
 const TeeZetaPage = lazy(() => import('../pages/Products/Comerciales/TeeZetaPage.jsx'));
 const PolinMontenPage = lazy(() => import('../pages/Products/Comerciales/PolinMontenPage.jsx'));
 const SolerasPage = lazy(() => import('../pages/Products/Comerciales/SolerasPage.jsx'));
@@ -150,6 +181,11 @@ function AppRoutes() {
             />
             <Route path="/productos/comerciales/cuadrados" element={<CuadradosPage />} />
             <Route
+              path="/categoria-producto/productos/comerciales/angulos"
+              element={<ComercialesAngulosPage />}
+            />
+            <Route path="/productos/comerciales/angulos" element={<ComercialesAngulosPage />} />
+            <Route
               path="/categoria-producto/productos/comerciales/tee-y-zeta"
               element={<TeeZetaPage />}
             />
@@ -182,6 +218,78 @@ function AppRoutes() {
               element={<GrapasPage />}
             />
             <Route path="/productos/galvanizados/grapas" element={<GrapasPage />} />
+            <Route
+              path="/categoria-producto/productos/galvanizados/alambre-de-puas"
+              element={<GalvanizadosAlambrePuasPage />}
+            />
+            <Route
+              path="/productos/galvanizados/alambre-de-puas"
+              element={<GalvanizadosAlambrePuasPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/alambre-galvanizado"
+              element={<GalvanizadosAlambreGalvanizadoPage />}
+            />
+            <Route
+              path="/productos/galvanizados/alambre-galvanizado"
+              element={<GalvanizadosAlambreGalvanizadoPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/concertina"
+              element={<GalvanizadosConcertinaPage />}
+            />
+            <Route
+              path="/productos/galvanizados/concertina"
+              element={<GalvanizadosConcertinaPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/criba-grano-de-plata-ligera"
+              element={<GalvanizadosCribaGranoPlataLigeraPage />}
+            />
+            <Route
+              path="/productos/galvanizados/criba-grano-de-plata-ligera"
+              element={<GalvanizadosCribaGranoPlataLigeraPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/malla-borreguera"
+              element={<GalvanizadosMallaBorregueraPage />}
+            />
+            <Route
+              path="/productos/galvanizados/malla-borreguera"
+              element={<GalvanizadosMallaBorregueraPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/malla-de-pajaro"
+              element={<GalvanizadosMallaDePajaroPage />}
+            />
+            <Route
+              path="/productos/galvanizados/malla-de-pajaro"
+              element={<GalvanizadosMallaDePajaroPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/malla-criba-ornamental"
+              element={<GalvanizadosMallaCribaOrnamentalPage />}
+            />
+            <Route
+              path="/productos/galvanizados/malla-criba-ornamental"
+              element={<GalvanizadosMallaCribaOrnamentalPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/multimalla-ferretera"
+              element={<GalvanizadosMultimallaFerreteraPage />}
+            />
+            <Route
+              path="/productos/galvanizados/multimalla-ferretera"
+              element={<GalvanizadosMultimallaFerreteraPage />}
+            />
+            <Route
+              path="/categoria-producto/productos/galvanizados/lamina-galvanizada"
+              element={<GalvanizadosLaminaGalvanizadaPage />}
+            />
+            <Route
+              path="/productos/galvanizados/lamina-galvanizada"
+              element={<GalvanizadosLaminaGalvanizadaPage />}
+            />
             <Route
               path="/categoria-producto/productos/estructurales"
               element={<EstructuralesPage />}
@@ -232,20 +340,20 @@ function AppRoutes() {
             />
             <Route path="/productos/estructurales/viga-ips" element={<VigaIpsPage />} />
             <Route
+              path="/categoria-producto/productos/estructurales/polin-monten"
+              element={<EstructuralesPolinMontenPage />}
+            />
+            <Route
+              path="/productos/estructurales/polin-monten"
+              element={<EstructuralesPolinMontenPage />}
+            />
+            <Route
               path="/categoria-producto/productos/perfiles-tubulares-y-tuberias"
               element={<TubularesPage />}
             />
             <Route
               path="/productos/perfiles-tubulares-y-tuberias"
               element={<TubularesPage />}
-            />
-            <Route
-              path="/categoria-producto/productos/perfiles-tubulares-y-tuberias/lamina-galvanizada"
-              element={<LaminaGalvanizadaPage />}
-            />
-            <Route
-              path="/productos/perfiles-tubulares-y-tuberias/lamina-galvanizada"
-              element={<LaminaGalvanizadaPage />}
             />
             <Route
               path="/categoria-producto/productos/perfiles-tubulares-y-tuberias/perfil-tubular"

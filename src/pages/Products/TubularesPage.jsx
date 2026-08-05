@@ -47,8 +47,7 @@ function TubularesPage() {
             </div>
           </div>
           <p className="mt-3 max-w-3xl pl-10 text-left text-sm leading-relaxed text-[#555] sm:pl-12 sm:text-base">
-            Lámina galvanizada, perfiles tubulares, PTR y tubería cédula, estructural y para
-            conducción de fluidos.
+          Manejamos la gama de perfiles tubulares y PTR, así como la tubería en cualquier diámetro, tanto para uso estructural o condución.
           </p>
         </div>
 

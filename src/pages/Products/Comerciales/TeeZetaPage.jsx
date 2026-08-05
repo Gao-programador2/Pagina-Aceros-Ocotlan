@@ -60,14 +60,9 @@ function TeeZetaPage() {
 
             <div className="flex min-w-0 flex-col">
               <p className="mt-0 text-sm leading-relaxed text-[#555] sm:text-base">
-                Este perfil tiene una sección en forma de &quot;T&quot; suelen utilizarse sobre todo para
-                estructuras metálicas y de acero.
+              El Alambre de púas es un tipo de cercado compuesto por un cable de acero con puntas afiladas distribuidas a lo largo de su longitud. Estas púas están diseñadas para disuadir o impedir el paso de personas o animales. Es comúnmente utilizado en áreas rurales, instalaciones de seguridad y para delimitar propiedades. Su resistencia y durabilidad lo hacen efectivo en la protección de terrenos y bienes.
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-[#555] sm:text-base">
-                Los perfiles &quot;Z&quot; tienen una sección con forma de zeta, generalmente con un canto
-                interior redondeado y un canto interior vivo. Las dimensiones del producto varían
-                según los requerimientos del cliente, su presentación es en tramo.
-              </p>
+
 
               <div className="mt-5 overflow-hidden rounded-lg">
                 <img

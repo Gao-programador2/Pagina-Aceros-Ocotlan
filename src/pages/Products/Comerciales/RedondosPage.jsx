@@ -62,8 +62,7 @@ function RedondosPage() {
             {/* Contenido */}
             <div className="flex min-w-0 flex-col">
               <p className="mt-0 text-sm leading-relaxed text-[#555] sm:text-base">
-                Barra de acero redonda y lisa que se fabrica en distintos diámetros para múltiples
-                usos en la construcción y la industria.
+              Un redondo es un perfil metálico con una sección transversal circular. Se utiliza en diversas aplicaciones por su resistencia y versatilidad. Es común en la construcción, fabricación de maquinaria y estructuras metálicas, donde puede actuar como soporte, refuerzo o componente estructural. Su superficie lisa y su forma redonda facilitan su uso en aplicaciones que requieren una distribución uniforme de cargas y flexibilidad en el diseño. Los redondos de acero son ideales para la fabricación de ejes, barras de refuerzo y elementos decorativos.
               </p>
 
               <div className="mt-5 overflow-hidden rounded-lg">

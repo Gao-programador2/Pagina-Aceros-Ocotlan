@@ -13,7 +13,7 @@ function MultimallaFerreteraPage() {
       tabla={tablaMultimalla}
       altImagen={"Paneles de multimalla ferretera electrosoldada"}
       altTabla={"Tabla de especificaciones de Multimalla ferretera"}
-      descripcion={"Multimalla ferretera galvanizada electrosoldada para refuerzo, cercado y usos ferreteros. Disponible en varias aberturas, calibres y alturas en rollos de 20 m."}
+      descripcion={"Una multimalla ferretera es una red de alambre de acero utilizada en aplicaciones de construcción y ferretería. Se compone de varias capas de malla entrelazadas, ofreciendo mayor resistencia y soporte estructural. Su diseño permite una eficaz separación de materiales y refuerza la durabilidad en aplicaciones como encofrado y refuerzo de concreto. Es valorada por su versatilidad y resistencia en entornos de trabajo exigentes."}
     />
   );
 }

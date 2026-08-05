@@ -10,7 +10,7 @@ function LaminaGalvanizadaPlanosPage() {
       tabla={tabla}
       altImagen="Lámina galvanizada corrugada"
       altTabla="Tabla de especificaciones de Lámina galvanizada"
-      descripcion="Lámina galvanizada en perfiles RN-100/35, R-72, R-101 y SECC-25, también a medidas especiales. Disponibles en distintos calibres con datos de peso, momentos y acciones permisibles."
+      descripcion="La lámina galvanizada es una hoja de acero recubierta con una capa de zinc mediante un proceso de galvanización, que protege el acero de la corrosión y oxidación. Este material es ampliamente utilizado en la construcción, fabricación de techos, estructuras metálicas y en la industria automotriz debido a su durabilidad y resistencia a los elementos."
     />
   );
 }

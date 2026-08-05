@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RecaptchaV2 from '../../components/common/RecaptchaV2.jsx';
+import { apiFetch } from '../../config/api.js';
 
 const CAMPO =
   'w-full rounded-md border border-steel-200 bg-white px-4 py-2.5 text-sm text-steel-800 placeholder-steel-400 outline-none transition-shadow focus:border-[#0d47a1] focus:ring-2 focus:ring-[#0d47a1]/20';
@@ -13,6 +14,7 @@ const RECAPTCHA_SITE_KEY = String(
 function SeccionContacto() {
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
+  const [errorEnvio, setErrorEnvio] = useState('');
   const [tokenCaptcha, setTokenCaptcha] = useState(null);
   const [errorCaptcha, setErrorCaptcha] = useState('');
   const [captchaKey, setCaptchaKey] = useState(0);
@@ -22,9 +24,10 @@ function SeccionContacto() {
     setCaptchaKey((n) => n + 1);
   };
 
-  const manejarEnvio = (evento) => {
+  const manejarEnvio = async (evento) => {
     evento.preventDefault();
     setErrorCaptcha('');
+    setErrorEnvio('');
 
     const datos = new FormData(evento.target);
     if (datos.get('website')) {
@@ -40,11 +43,28 @@ function SeccionContacto() {
     }
 
     setEnviando(true);
-    // TODO: enviar datos + tokenCaptcha al backend con RECAPTCHA_SECRET_KEY
-    setEnviado(true);
-    evento.target.reset();
-    reiniciarCaptcha();
-    setEnviando(false);
+    try {
+      await apiFetch('/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre: String(datos.get('nombre') || ''),
+          empresa: String(datos.get('empresa') || ''),
+          correo: String(datos.get('correo') || ''),
+          telefono: String(datos.get('telefono') || ''),
+          mensaje: String(datos.get('mensaje') || ''),
+          token_captcha: tokenCaptcha,
+        }),
+      });
+      setEnviado(true);
+      evento.target.reset();
+      reiniciarCaptcha();
+    } catch (error) {
+      setErrorEnvio(error?.message || 'No se pudo enviar el mensaje. Intenta de nuevo.');
+      reiniciarCaptcha();
+    } finally {
+      setEnviando(false);
+    }
   };
 
   return (
@@ -178,6 +198,7 @@ function SeccionContacto() {
             </div>
 
             {errorCaptcha && <p className="text-sm text-red-600">{errorCaptcha}</p>}
+            {errorEnvio && <p className="text-sm text-red-600">{errorEnvio}</p>}
 
             <button
               type="submit"

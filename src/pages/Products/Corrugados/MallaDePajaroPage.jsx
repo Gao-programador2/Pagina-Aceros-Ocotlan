@@ -13,7 +13,7 @@ function MallaDePajaroPage() {
       tabla={tablaMallaPajaro}
       altImagen={"Rollo de malla de pájaro hexagonal"}
       altTabla={"Tabla de especificaciones de Malla de pájaro"}
-      descripcion={"Malla de pájaro (hexagonal) galvanizada para aviarios, jardinería y protección ligera. Disponible en distintas aberturas, alturas y calibres."}
+      descripcion={"Una malla de pájaro es una red metálica fina y resistente, fabricada con alambre de acero galvanizado o inoxidable. Está diseñada para prevenir la entrada de aves en áreas específicas, como invernaderos, almacenes o edificios. Sus mallas tienen aberturas pequeñas que impiden el paso de pájaros sin obstruir la visibilidad o ventilación. Es duradera y efectiva para proteger cultivos y estructuras de daños o contaminaciones causadas por aves."}
     />
   );
 }

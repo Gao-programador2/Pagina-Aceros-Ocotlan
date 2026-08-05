@@ -10,7 +10,7 @@ function HssCuadradoPage() {
       tabla={tablaHssCuadrado}
       altImagen="Perfiles HSS cuadrados"
       altTabla="Tabla de especificaciones de HSS Cuadrado"
-      descripcion="Perfiles tubulares estructurales HSS de sección cuadrada, en distintas medidas y espesores, con peso por metro lineal según calibre."
+      descripcion="El HSS cuadrado, es un perfil metálico con una sección transversal cuadrada, fabricado en acero. Se utiliza en la construcción y fabricación para proporcionar soporte estructural en columnas, vigas y marcos. Su forma proporciona una distribución uniforme de cargas y facilita la conexión con otros componentes. Es valorado por su resistencia, estabilidad y capacidad para soportar tensiones y compresiones en diversas aplicaciones de ingeniería."
     />
   );
 }

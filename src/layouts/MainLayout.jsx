@@ -4,6 +4,7 @@ import Navbar from '../components/layout/Navbar.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import AlertaFraude from '../components/common/AlertaFraude.jsx';
 import BotonWhatsAppFlotante from '../components/common/BotonWhatsAppFlotante.jsx';
+import GoogleAnalytics from '../components/common/GoogleAnalytics.jsx';
 
 /**
  * Plantilla principal del sitio.
@@ -46,6 +47,7 @@ function MainLayout() {
 
   return (
     <div className="flex min-h-screen max-w-full flex-col">
+      <GoogleAnalytics />
       <AlertaFraude />
       <BotonWhatsAppFlotante />
 

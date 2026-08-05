@@ -10,7 +10,7 @@ function HssRectangularPage() {
       tabla={tablaHssRectangular}
       altImagen="Perfiles HSS rectangulares"
       altTabla="Tabla de especificaciones de HSS Rectangular"
-      descripcion="Perfiles tubulares estructurales HSS de sección rectangular, disponibles en distintas dimensiones y espesores con peso por metro lineal."
+      descripcion="El HSS rectangular, es un perfil metálico con una sección transversal rectangular. Se emplea en la construcción y en estructuras metálicas para proporcionar soporte en vigas, columnas y marcos. Su forma permite una distribución eficaz de cargas y facilita la integración con otros elementos estructurales. Es apreciado por su resistencia, versatilidad y capacidad para soportar diversas fuerzas en aplicaciones de ingeniería y arquitectura."
     />
   );
 }
