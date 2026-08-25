@@ -189,9 +189,26 @@ function CarruselProductos() {
   );
 }
 
+function IntroAcerosOcotlan() {
+  return (
+      <div className="mb-10 rounded-2xl border border-white/20 bg-white/5 px-5 py-6 shadow-lg backdrop-blur-md sm:mb-12 sm:px-8 sm:py-8 lg:px-12">
+            <h1 className="text-left text-base font-normal leading-relaxed text-gray-700 sm:text-lg lg:text-xl">
+              <span className="font-semibold text-[#0d47a1]">Aceros Ocotlán</span> es una empresa 100% mexicana
+              líder en la distribución y transformación de productos de acero al carbón para la
+              industria de la construcción. Con más de{' '}
+              <span className="font-semibold text-[#0d47a1]">70 puntos de venta</span> y centros de servicio
+              especializados, ofrecemos soluciones integrales como habilitado, nivelado, corte láser
+              y más. Suministramos acero de la más alta calidad para impulsar las obras de
+              infraestructura más importantes.
+            </h1>
+      </div>
+  );
+}
+
 function ListaProductos() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 sm:py-16">
+      <IntroAcerosOcotlan />
       <BannerTransparencia />
       <CarruselProductos />
     </section>
