@@ -2,10 +2,10 @@ from fastapi import APIRouter, File, Form, UploadFile
 
 from app.config import get_settings
 from app.schemas.contacto import EnvioOk
+from app.services.archivo_service import leer_adjuntos_seguros
 from app.services.email_service import (
     enviar_correo,
     fila_html,
-    leer_adjuntos,
     plantilla_transparencia,
 )
 
@@ -33,7 +33,7 @@ async def denuncia_irregularidades(
     archivos: list[UploadFile] | None = File(None),
 ) -> EnvioOk:
     settings = get_settings()
-    adjuntos = await leer_adjuntos(archivos or [])
+    adjuntos = await leer_adjuntos_seguros(archivos or [])
 
     filas = "".join(
         [
@@ -95,7 +95,7 @@ async def denuncia_fraudes(
     archivos: list[UploadFile] | None = File(None),
 ) -> EnvioOk:
     settings = get_settings()
-    adjuntos = await leer_adjuntos(archivos or [])
+    adjuntos = await leer_adjuntos_seguros(archivos or [])
 
     filas = "".join(
         [

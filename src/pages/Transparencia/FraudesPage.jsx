@@ -2,6 +2,17 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, FilePlus2 } from 'lucide-react';
 import { apiFetch } from '../../config/api.js';
+import {
+  ACCEPT_ARCHIVOS,
+  MAX_ARCHIVOS_TRANSPARENCIA,
+  agregarArchivosTransparencia,
+  validarListaArchivosTransparencia,
+} from '../../utils/archivosTransparencia.js';
+import {
+  alertaDesdeError,
+  mensajePrimerCampoInvalido,
+  useModalAlerta,
+} from '../../hooks/useModalAlerta.jsx';
 
 const AZUL = '#1a4789';
 const RUTA_TRANSPARENCIA = '/transparencia-ao/';
@@ -62,9 +73,9 @@ const CONSEJOS_FRAUDE = [
 function FraudesPage() {
   const navegar = useNavigate();
   const inputArchivoRef = useRef(null);
+  const { mostrarAlerta, ModalAlertaFormulario } = useModalAlerta();
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
-  const [errorEnvio, setErrorEnvio] = useState('');
   const [archivos, setArchivos] = useState([]);
   const [formulario, setFormulario] = useState({
     correo: '',
@@ -77,25 +88,54 @@ function FraudesPage() {
     setFormulario((prev) => ({ ...prev, [campo]: evento.target.value }));
   };
 
+  const mostrarErrorArchivo = (mensaje) => {
+    mostrarAlerta(alertaDesdeError(mensaje, 'archivo'));
+  };
+
+  const incorporarArchivos = (lista) => {
+    const { archivos: actualizados, error } = agregarArchivosTransparencia(archivos, lista);
+    if (error) {
+      mostrarErrorArchivo(error);
+      return;
+    }
+    setArchivos(actualizados);
+  };
+
   const alSoltarArchivos = (evento) => {
     evento.preventDefault();
     const lista = Array.from(evento.dataTransfer?.files ?? []);
-    if (lista.length) setArchivos((prev) => [...prev, ...lista]);
+    if (lista.length) incorporarArchivos(lista);
   };
 
   const alElegirArchivos = (evento) => {
     const lista = Array.from(evento.target.files ?? []);
-    if (lista.length) setArchivos((prev) => [...prev, ...lista]);
+    if (lista.length) incorporarArchivos(lista);
+    evento.target.value = '';
   };
 
   const alEnviar = async (evento) => {
     evento.preventDefault();
-    if (archivos.length === 0) {
-      inputArchivoRef.current?.click();
+    const formularioHtml = evento.currentTarget;
+
+    if (!formularioHtml.checkValidity()) {
+      const mensaje = mensajePrimerCampoInvalido(formularioHtml);
+      mostrarAlerta(alertaDesdeError(mensaje, 'formulario'));
+      formularioHtml.querySelector(':invalid')?.focus();
       return;
     }
 
-    setErrorEnvio('');
+    if (archivos.length === 0) {
+      mostrarErrorArchivo('Debes adjuntar al menos un archivo PDF o JPG como evidencia.');
+      inputArchivoRef.current?.focus();
+      return;
+    }
+
+    const errorAdjuntos = validarListaArchivosTransparencia(archivos);
+    if (errorAdjuntos) {
+      mostrarErrorArchivo(errorAdjuntos);
+      return;
+    }
+
     setEnviando(true);
 
     try {
@@ -114,7 +154,7 @@ function FraudesPage() {
       setEnviado(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
-      setErrorEnvio(error?.message || 'No se pudo enviar la denuncia. Intenta de nuevo.');
+      mostrarAlerta(alertaDesdeError(error?.message, 'envio'));
     } finally {
       setEnviando(false);
     }
@@ -146,6 +186,7 @@ function FraudesPage() {
 
   return (
     <section className="relative bg-[#f3f4f6] pb-12 pt-6 sm:pt-8">
+      <ModalAlertaFormulario />
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="mb-4 flex min-w-0 items-center gap-3 sm:mb-5 sm:gap-4">
           <button
@@ -192,6 +233,7 @@ function FraudesPage() {
         </div>
 
         <form
+          noValidate
           onSubmit={alEnviar}
           className="rounded-2xl bg-white px-4 py-6 shadow-sm sm:px-8 sm:py-8"
         >
@@ -244,10 +286,14 @@ function FraudesPage() {
 
             <div>
               <p className="mb-1.5 text-sm font-medium text-[#333]">Compártenos la evidencia:*</p>
+              <p className="mb-2 text-xs leading-relaxed text-[#777] sm:text-sm">
+                Solo PDF o JPG · máximo {MAX_ARCHIVOS_TRANSPARENCIA} archivos · 8 MB por archivo.
+              </p>
               <input
                 ref={inputArchivoRef}
                 type="file"
                 multiple
+                accept={ACCEPT_ARCHIVOS}
                 className="hidden"
                 onChange={alElegirArchivos}
               />
@@ -294,10 +340,6 @@ function FraudesPage() {
           >
             {enviando ? 'Enviando…' : 'Enviar'}
           </button>
-
-          {errorEnvio && (
-            <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{errorEnvio}</p>
-          )}
 
           <h3 className="mt-10 text-base font-bold sm:text-lg" style={{ color: AZUL }}>
             Evita fraudes utilizando únicamente nuestros canales oficiales:

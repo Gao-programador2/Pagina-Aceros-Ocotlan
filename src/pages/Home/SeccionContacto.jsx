@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RecaptchaV2 from '../../components/common/RecaptchaV2.jsx';
 import { apiFetch } from '../../config/api.js';
+import {
+  alertaDesdeError,
+  mensajePrimerCampoInvalido,
+  useModalAlerta,
+} from '../../hooks/useModalAlerta.jsx';
 
 const CAMPO =
   'w-full rounded-md border border-steel-200 bg-white px-4 py-2.5 text-sm text-steel-800 placeholder-steel-400 outline-none transition-shadow focus:border-[#0d47a1] focus:ring-2 focus:ring-[#0d47a1]/20';
@@ -12,11 +17,10 @@ const RECAPTCHA_SITE_KEY = String(
 ).trim();
 
 function SeccionContacto() {
+  const { mostrarAlerta, ModalAlertaFormulario } = useModalAlerta();
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
-  const [errorEnvio, setErrorEnvio] = useState('');
   const [tokenCaptcha, setTokenCaptcha] = useState(null);
-  const [errorCaptcha, setErrorCaptcha] = useState('');
   const [captchaKey, setCaptchaKey] = useState(0);
 
   const reiniciarCaptcha = () => {
@@ -26,19 +30,29 @@ function SeccionContacto() {
 
   const manejarEnvio = async (evento) => {
     evento.preventDefault();
-    setErrorCaptcha('');
-    setErrorEnvio('');
+    const formularioHtml = evento.currentTarget;
 
-    const datos = new FormData(evento.target);
+    const datos = new FormData(formularioHtml);
     if (datos.get('website')) {
       setEnviado(true);
-      evento.target.reset();
+      formularioHtml.reset();
       reiniciarCaptcha();
       return;
     }
 
+    if (!formularioHtml.checkValidity()) {
+      const mensaje = mensajePrimerCampoInvalido(formularioHtml);
+      mostrarAlerta(alertaDesdeError(mensaje, 'formulario'));
+      formularioHtml.querySelector(':invalid')?.focus();
+      return;
+    }
+
     if (!tokenCaptcha) {
-      setErrorCaptcha('Completa el reCAPTCHA para continuar.');
+      mostrarAlerta({
+        tipo: 'error',
+        titulo: 'Verificación requerida',
+        mensaje: 'Completa el reCAPTCHA para continuar.',
+      });
       return;
     }
 
@@ -57,10 +71,10 @@ function SeccionContacto() {
         }),
       });
       setEnviado(true);
-      evento.target.reset();
+      formularioHtml.reset();
       reiniciarCaptcha();
     } catch (error) {
-      setErrorEnvio(error?.message || 'No se pudo enviar el mensaje. Intenta de nuevo.');
+      mostrarAlerta(alertaDesdeError(error?.message, 'envio'));
       reiniciarCaptcha();
     } finally {
       setEnviando(false);
@@ -69,6 +83,7 @@ function SeccionContacto() {
 
   return (
     <section id="contacto" className="scroll-mt-28 bg-white">
+      <ModalAlertaFormulario />
       <div className="h-px w-full bg-[#c5ccd6]" aria-hidden="true" />
       <div className="h-10 sm:h-14" aria-hidden="true" />
 
@@ -76,7 +91,7 @@ function SeccionContacto() {
         <div className="mx-auto max-w-4xl px-4 py-12 sm:py-16">
           <h2 className="text-3xl font-semibold text-[#0d47a1] sm:text-4xl">Contáctanos</h2>
 
-          <form onSubmit={manejarEnvio} className="mt-8 space-y-5">
+          <form noValidate onSubmit={manejarEnvio} className="mt-8 space-y-5">
             <input
               id="contacto-website"
               type="text"
@@ -185,20 +200,19 @@ function SeccionContacto() {
                 sitekey={RECAPTCHA_SITE_KEY}
                 onChange={(token) => {
                   setTokenCaptcha(token);
-                  setErrorCaptcha('');
                 }}
                 onExpired={() => setTokenCaptcha(null)}
                 onError={() => {
                   setTokenCaptcha(null);
-                  setErrorCaptcha(
-                    'Error de reCAPTCHA. Abre el sitio en http://localhost:5173 y en Google Admin agrega: localhost, 127.0.0.1, 192.168.100.67, acerosocotlan.mx',
-                  );
+                  mostrarAlerta({
+                    tipo: 'error',
+                    titulo: 'Error de verificación',
+                    mensaje:
+                      'No se pudo cargar el reCAPTCHA. Recarga la página e inténtalo de nuevo.',
+                  });
                 }}
               />
             </div>
-
-            {errorCaptcha && <p className="text-sm text-red-600">{errorCaptcha}</p>}
-            {errorEnvio && <p className="text-sm text-red-600">{errorEnvio}</p>}
 
             <button
               type="submit"

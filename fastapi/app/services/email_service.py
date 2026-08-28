@@ -35,6 +35,27 @@ AZUL = "#1a4789"
 AZUL_OSCURO = "#0d3a73"
 ACERO = "#5a6575"
 
+ESTILOS_FORMULARIO = {
+    "Irregularidades": {
+        "badge_bg": "#c2410c",
+        "banda_bg": "#fff7ed",
+        "banda_texto": "#9a3412",
+        "banda_borde": "#c2410c",
+    },
+    "Fraudes": {
+        "badge_bg": "#b91c1c",
+        "banda_bg": "#fef2f2",
+        "banda_texto": "#991b1b",
+        "banda_borde": "#b91c1c",
+    },
+    "Contacto": {
+        "badge_bg": "#0d47a1",
+        "banda_bg": "#eff6ff",
+        "banda_texto": "#1e3a8a",
+        "banda_borde": "#0d47a1",
+    },
+}
+
 
 def escapar_html(valor: str) -> str:
     texto = (valor or "—").strip() or "—"
@@ -96,6 +117,46 @@ def _navbar_azul(etiqueta: str = "Aceros Ocotlán") -> str:
     """
 
 
+def _encabezado_formulario(*, tipo: str, titulo: str, subtitulo: str) -> str:
+    """
+    Encabezado visible en clientes de correo (Outlook/IIS).
+    Usa bgcolor sólido + banda de identificación de alto contraste.
+    """
+    estilo = ESTILOS_FORMULARIO.get(tipo, ESTILOS_FORMULARIO["Contacto"])
+    tipo_html = escapar_html(tipo.upper())
+    titulo_html = escapar_html(titulo)
+    subtitulo_html = escapar_html(subtitulo)
+
+    return f"""
+      <tr>
+        <td bgcolor="{AZUL}" style="background-color:{AZUL};padding:22px 32px 18px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td bgcolor="{estilo['badge_bg']}" style="background-color:{estilo['badge_bg']};padding:8px 16px;border-radius:999px;">
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#ffffff;">
+                  <font color="#ffffff">{tipo_html}</font>
+                </span>
+              </td>
+            </tr>
+          </table>
+          <h1 style="margin:14px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:normal;line-height:1.35;color:#ffffff;">
+            <font color="#ffffff">{titulo_html}</font>
+          </h1>
+          <p style="margin:8px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#dbeafe;">
+            <font color="#dbeafe">{subtitulo_html}</font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="{estilo['banda_bg']}" style="background-color:{estilo['banda_bg']};padding:12px 32px;border-bottom:3px solid {estilo['banda_borde']};">
+          <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;color:{estilo['banda_texto']};">
+            <font color="{estilo['banda_texto']}">Origen del formulario: {tipo_html}</font>
+          </p>
+        </td>
+      </tr>
+    """
+
+
 def _pie_con_logo() -> str:
     return f"""
       <tr>
@@ -146,17 +207,11 @@ def plantilla_contacto(
 
           {_navbar_azul("Aceros Ocotlán")}
 
-          <!-- Título de sección -->
-          <tr>
-            <td style="background:linear-gradient(135deg,{AZUL} 0%,{AZUL_OSCURO} 100%);padding:22px 32px;">
-              <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.75);">
-                Aceros Ocotlán · Contáctanos
-              </p>
-              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:normal;color:#ffffff;line-height:1.3;">
-                Nuevo mensaje de contacto
-              </h1>
-            </td>
-          </tr>
+          {_encabezado_formulario(
+              tipo="Contacto",
+              titulo="Nuevo mensaje de contacto",
+              subtitulo="Formulario Contáctanos del sitio web",
+          )}
 
           <!-- Intro -->
           <tr>
@@ -272,17 +327,11 @@ def plantilla_transparencia(
 
           {_navbar_azul("Aceros Ocotlán")}
 
-          <!-- Título (mismo estilo que contacto) -->
-          <tr>
-            <td style="background:linear-gradient(135deg,{AZUL} 0%,{AZUL_OSCURO} 100%);padding:22px 32px;">
-              <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#e8eef8;">
-                <span style="color:#e8eef8;">Aceros Ocotlán · {escapar_html(etiqueta_seccion)}</span>
-              </p>
-              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:normal;color:#ffffff;line-height:1.3;">
-                <span style="color:#ffffff;">{escapar_html(titulo)}</span>
-              </h1>
-            </td>
-          </tr>
+          {_encabezado_formulario(
+              tipo=etiqueta_seccion,
+              titulo=titulo,
+              subtitulo=f"Formulario de Transparencia · {etiqueta_seccion}",
+          )}
 
           <!-- Intro -->
           <tr>

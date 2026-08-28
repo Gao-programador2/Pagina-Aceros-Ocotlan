@@ -47,6 +47,22 @@ class Settings(BaseSettings):
 
     RECAPTCHA_SECRET_KEY: str = ""
 
+    # Antivirus opcional (ClamAV). En producción: CLAMAV_ENABLED=true
+    CLAMAV_ENABLED: bool = False
+    CLAMAV_HOST: str = "127.0.0.1"
+    CLAMAV_PORT: int = 3310
+    CLAMAV_SOCKET: str = "/var/run/clamav/clamd.ctl"
+
+    # Seguridad HTTP
+    TRUSTED_HOSTS: str = ""
+    RATE_LIMIT_ENABLED: bool = True
+    RATE_LIMIT_MAX: int = 25
+    RATE_LIMIT_WINDOW_SEC: int = 60
+
+    @property
+    def trusted_hosts_list(self) -> list[str]:
+        return [h.strip() for h in self.TRUSTED_HOSTS.split(",") if h.strip()]
+
     @property
     def cors_origins_list(self) -> list[str]:
         return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip()]

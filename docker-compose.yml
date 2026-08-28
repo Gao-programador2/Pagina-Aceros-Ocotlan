@@ -1,0 +1,43 @@
+services:
+  api:
+    build:
+      context: ./fastapi
+      dockerfile: Dockerfile
+    env_file:
+      - ./fastapi/.env
+    environment:
+      DEBUG: "false"
+      CLAMAV_ENABLED: "true"
+      CLAMAV_HOST: "127.0.0.1"
+      CLAMAV_PORT: "3310"
+      RATE_LIMIT_ENABLED: "true"
+    expose:
+      - "8000"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ""
+        VITE_GA_MEASUREMENT_ID: ${VITE_GA_MEASUREMENT_ID:-}
+        VITE_RECAPTCHA_SITE_KEY: ${VITE_RECAPTCHA_SITE_KEY:-}
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
