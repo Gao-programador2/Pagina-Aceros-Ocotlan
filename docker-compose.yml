@@ -7,7 +7,7 @@ services:
       - ./fastapi/.env
     environment:
       DEBUG: "false"
-      CLAMAV_ENABLED: "true"
+      CLAMAV_ENABLED: "${CLAMAV_ENABLED:-false}"
       CLAMAV_HOST: "127.0.0.1"
       CLAMAV_PORT: "3310"
       RATE_LIMIT_ENABLED: "true"

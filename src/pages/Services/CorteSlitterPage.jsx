@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import imagenSlitter from '../../assets/Corte-Slitter-scaled.jpg';
+import imagenSlitter from '../../assets/Corte-slitter-scaled.jpg';
 import imagenBeneficios from '../../assets/Beneficios Corte Slitter.png';
 import imagenTablaCorte from '../../assets/Tabla Corte Slitter.png';
 import { TituloRutaProductos } from '../Products/TituloRutaProductos.jsx';

@@ -1,9 +1,9 @@
 import imagenNivelado from '../../assets/Niveladora-scaled.jpg';
-import imagenCorteSlitter from '../../assets/Corte-Slitter-scaled.jpg';
+import imagenCorteSlitter from '../../assets/Corte-slitter-scaled.jpg';
 import imagenCizalla from '../../assets/Cizalla-1-scaled.jpg';
-import imagenFabricacionDePolin from '../../assets/Fabricacion-de-Polin-1-scaled.jpg';
-import imagenAcanaladoDeLamina from '../../assets/Acanalado-de-Lamina-2.jpg';
-import imagenHabilitadoDeVarilla from '../../assets/Habilitado-de-Varilla-1-scaled.jpg';
+import imagenFabricacionDePolin from '../../assets/Fabricacion-de-polin-1-scaled.jpg';
+import imagenAcanaladoDeLamina from '../../assets/Acanalado-de-lamina-2.jpg';
+import imagenHabilitadoDeVarilla from '../../assets/Habilitado-de-varilla-1-scaled.jpg';
 
 export const RUTA_SERVICIOS = '/servicios';
 export const AZUL_SERVICIOS = '#1a4789';

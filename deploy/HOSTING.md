@@ -52,22 +52,37 @@ Completa al menos:
 | `TRUSTED_HOSTS` | `acerosocotlan.mx,www.acerosocotlan.mx,localhost,127.0.0.1` |
 | `CLAMAV_ENABLED` | `true` (ya activo en Docker) |
 
-### Variables del front (build)
+### `.env.docker` (Docker Compose)
 
 ```powershell
 copy .env.docker.example .env.docker
 notepad .env.docker
 ```
 
+| Variable | Local (dev) | Producción (hosting) |
+|---|---|---|
+| `WEB_PORT` | `8080` o `8081` si 8080 está ocupado | `8080` (IIS apunta aquí) |
+| `CLAMAV_ENABLED` | `false` (arranque más rápido) | **`true`** (antivirus en adjuntos) |
+| `VITE_GA_MEASUREMENT_ID` | opcional | ID de Analytics |
+| `VITE_RECAPTCHA_SITE_KEY` | clave pública reCAPTCHA | misma clave del dominio |
+
+> **ClamAV en producción:** pon `CLAMAV_ENABLED=true` en **`.env.docker`** y también `CLAMAV_ENABLED=true` en **`fastapi/.env`**. El contenedor `api` arranca `clamd` solo y escanea PDF/JPG de transparencia. Con `restart: unless-stopped` se levanta de nuevo si el servidor reinicia.
+
 ---
 
 ## 3. Levantar Docker
 
 ```powershell
+.\iniciar-docker.ps1
+```
+
+O manualmente:
+
+```powershell
 docker compose --env-file .env.docker up -d --build
 ```
 
-Primera vez: ClamAV descarga firmas (~2–5 min). Ver logs:
+Primera vez con ClamAV: descarga firmas (~2–5 min). Ver logs:
 
 ```powershell
 docker compose logs -f api
@@ -122,10 +137,29 @@ docker compose exec api python scripts/test_formularios.py
 | Adjuntos rechazados | Solo PDF/JPG; logs ClamAV: `docker compose logs api` |
 | 502 en IIS | Docker corriendo, puerto 8080, ARR proxy ON |
 | ClamAV lento al inicio | Normal la 1.ª vez (`freshclam`); esperar `healthy` en `docker compose ps` |
+| ClamAV no escanea | `CLAMAV_ENABLED=true` en `.env.docker` y `fastapi/.env`; `docker compose logs api` debe mostrar `[entrypoint] Iniciando clamd...` |
 
 ---
 
-## 8. Puertos
+## 8. ClamAV activo (checklist producción)
+
+1. En **`.env.docker`**: `CLAMAV_ENABLED=true`
+2. En **`fastapi/.env`**: `CLAMAV_ENABLED=true`
+3. Levantar: `docker compose --env-file .env.docker up -d --build`
+4. Verificar logs: `docker compose logs api` → debe aparecer `Iniciando clamd...`
+5. El contenedor debe quedar **healthy** (`docker compose ps`)
+6. Tras reinicio del servidor Windows, Docker Desktop debe iniciar solo; los contenedores vuelven con `unless-stopped`
+
+Actualizar firmas (opcional, mensual):
+
+```powershell
+docker compose exec api freshclam
+docker compose restart api
+```
+
+---
+
+## 9. Puertos
 
 | Servicio | Puerto host | Uso |
 |---|---|---|
