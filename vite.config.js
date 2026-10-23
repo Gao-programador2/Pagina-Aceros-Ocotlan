@@ -20,7 +20,8 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['maplibre-gl'],
+    // MapLibre v6: el worker falla si se pre-bundlea; dejar que Vite lo trate como ESM.
+    exclude: ['maplibre-gl'],
   },
   build: {
     // MapLibre (~1 MB) ya va en un chunk lazy; no se puede bajar de 500 kB sin romper el mapa.

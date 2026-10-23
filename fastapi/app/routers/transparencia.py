@@ -8,6 +8,7 @@ from app.services.email_service import (
     fila_html,
     plantilla_transparencia,
 )
+from app.services.recaptcha_service import verificar_recaptcha
 
 router = APIRouter(prefix="/transparencia", tags=["Transparencia"])
 
@@ -30,8 +31,10 @@ async def denuncia_irregularidades(
     sugerencias: str = Form(""),
     correo: str = Form(""),
     telefono: str = Form(""),
+    token_captcha: str = Form(""),
     archivos: list[UploadFile] | None = File(None),
 ) -> EnvioOk:
+    await verificar_recaptcha(token_captcha)
     settings = get_settings()
     adjuntos = await leer_adjuntos_seguros(archivos or [])
 
@@ -92,8 +95,10 @@ async def denuncia_fraudes(
     nombre: str = Form(""),
     narracion: str = Form(...),
     enlace_fraudulento: str = Form(""),
+    token_captcha: str = Form(""),
     archivos: list[UploadFile] | None = File(None),
 ) -> EnvioOk:
+    await verificar_recaptcha(token_captcha)
     settings = get_settings()
     adjuntos = await leer_adjuntos_seguros(archivos or [])
 

@@ -1,8 +1,10 @@
 "use client";
 
-import MapLibreGL from "maplibre-gl";
+import * as MapLibreGL from "maplibre-gl";
+import { setWorkerUrl } from "maplibre-gl";
 import type { PopupOptions, MarkerOptions } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import maplibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import type * as GeoJSON from "geojson";
 import {
   createContext,
@@ -21,6 +23,9 @@ import { createPortal } from "react-dom";
 import { X, Minus, Plus, Locate, Maximize, Loader2 } from "lucide-react";
 
 import { cn } from "../../lib/utils.js";
+
+// MapLibre v6 + Vite: el worker no se resuelve solo; hace falta una vez por app.
+setWorkerUrl(maplibreWorkerUrl);
 
 const defaultStyles = {
   dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",

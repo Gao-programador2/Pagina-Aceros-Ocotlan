@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, FilePlus2 } from 'lucide-react';
+import RecaptchaV2 from '../../components/common/RecaptchaV2.jsx';
 import { apiFetch } from '../../config/api.js';
 import {
   ACCEPT_ARCHIVOS,
@@ -16,6 +17,9 @@ import {
 
 const AZUL = '#1a4789';
 const RUTA_TRANSPARENCIA = '/transparencia-ao/';
+const RECAPTCHA_SITE_KEY = String(
+  import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LcN9GAtAAAAAHyFQ0h-beFCvzCN-hsHJ5iZBlHQ',
+).trim();
 
 const AREAS = [
   '-',
@@ -56,6 +60,8 @@ function IrregularidadesPage() {
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [archivos, setArchivos] = useState([]);
+  const [tokenCaptcha, setTokenCaptcha] = useState(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
   const [formulario, setFormulario] = useState({
     tipoPersona: '',
     sucursal: '',
@@ -70,6 +76,11 @@ function IrregularidadesPage() {
     correo: '',
     telefono: '',
   });
+
+  const reiniciarCaptcha = () => {
+    setTokenCaptcha(null);
+    setCaptchaKey((n) => n + 1);
+  };
 
   const actualizar = (campo) => (evento) => {
     setFormulario((prev) => ({ ...prev, [campo]: evento.target.value }));
@@ -116,6 +127,16 @@ function IrregularidadesPage() {
       mostrarErrorArchivo(errorAdjuntos);
       return;
     }
+
+    if (!tokenCaptcha) {
+      mostrarAlerta({
+        tipo: 'error',
+        titulo: 'Verificación requerida',
+        mensaje: 'Completa el reCAPTCHA para continuar.',
+      });
+      return;
+    }
+
     setEnviando(true);
 
     try {
@@ -132,6 +153,7 @@ function IrregularidadesPage() {
       datos.append('sugerencias', formulario.sugerencias);
       datos.append('correo', formulario.correo);
       datos.append('telefono', formulario.telefono);
+      datos.append('token_captcha', tokenCaptcha);
       archivos.forEach((archivo) => datos.append('archivos', archivo));
 
       await apiFetch('/api/transparencia/irregularidades', {
@@ -143,6 +165,7 @@ function IrregularidadesPage() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       mostrarAlerta(alertaDesdeError(error?.message, 'envio'));
+      reiniciarCaptcha();
     } finally {
       setEnviando(false);
     }
@@ -444,6 +467,24 @@ function IrregularidadesPage() {
                 className={CAMPO}
               />
             </label>
+          </div>
+
+          <div className="mt-8 overflow-x-auto">
+            <RecaptchaV2
+              key={captchaKey}
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={(token) => setTokenCaptcha(token)}
+              onExpired={() => setTokenCaptcha(null)}
+              onError={() => {
+                setTokenCaptcha(null);
+                mostrarAlerta({
+                  tipo: 'error',
+                  titulo: 'Error de verificación',
+                  mensaje:
+                    'No se pudo cargar el reCAPTCHA. Recarga la página e inténtalo de nuevo.',
+                });
+              }}
+            />
           </div>
 
           <button

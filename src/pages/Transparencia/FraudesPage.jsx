@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, FilePlus2 } from 'lucide-react';
+import RecaptchaV2 from '../../components/common/RecaptchaV2.jsx';
 import { apiFetch } from '../../config/api.js';
 import {
   ACCEPT_ARCHIVOS,
@@ -16,6 +17,9 @@ import {
 
 const AZUL = '#1a4789';
 const RUTA_TRANSPARENCIA = '/transparencia-ao/';
+const RECAPTCHA_SITE_KEY = String(
+  import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LcN9GAtAAAAAHyFQ0h-beFCvzCN-hsHJ5iZBlHQ',
+).trim();
 
 const CAMPO =
   'w-full rounded-lg border border-[#c5cdd8] bg-white px-3 py-2.5 text-sm text-[#333] outline-none transition-shadow focus:border-[#1a4789] focus:ring-2 focus:ring-[#1a4789]/25';
@@ -77,12 +81,19 @@ function FraudesPage() {
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [archivos, setArchivos] = useState([]);
+  const [tokenCaptcha, setTokenCaptcha] = useState(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
   const [formulario, setFormulario] = useState({
     correo: '',
     nombre: '',
     narracion: '',
     enlaceFraudulento: '',
   });
+
+  const reiniciarCaptcha = () => {
+    setTokenCaptcha(null);
+    setCaptchaKey((n) => n + 1);
+  };
 
   const actualizar = (campo) => (evento) => {
     setFormulario((prev) => ({ ...prev, [campo]: evento.target.value }));
@@ -136,6 +147,15 @@ function FraudesPage() {
       return;
     }
 
+    if (!tokenCaptcha) {
+      mostrarAlerta({
+        tipo: 'error',
+        titulo: 'Verificación requerida',
+        mensaje: 'Completa el reCAPTCHA para continuar.',
+      });
+      return;
+    }
+
     setEnviando(true);
 
     try {
@@ -144,6 +164,7 @@ function FraudesPage() {
       datos.append('nombre', formulario.nombre);
       datos.append('narracion', formulario.narracion);
       datos.append('enlace_fraudulento', formulario.enlaceFraudulento);
+      datos.append('token_captcha', tokenCaptcha);
       archivos.forEach((archivo) => datos.append('archivos', archivo));
 
       await apiFetch('/api/transparencia/fraudes', {
@@ -155,6 +176,7 @@ function FraudesPage() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       mostrarAlerta(alertaDesdeError(error?.message, 'envio'));
+      reiniciarCaptcha();
     } finally {
       setEnviando(false);
     }
@@ -331,6 +353,24 @@ function FraudesPage() {
                 className={CAMPO}
               />
             </label>
+          </div>
+
+          <div className="mt-8 overflow-x-auto">
+            <RecaptchaV2
+              key={captchaKey}
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={(token) => setTokenCaptcha(token)}
+              onExpired={() => setTokenCaptcha(null)}
+              onError={() => {
+                setTokenCaptcha(null);
+                mostrarAlerta({
+                  tipo: 'error',
+                  titulo: 'Error de verificación',
+                  mensaje:
+                    'No se pudo cargar el reCAPTCHA. Recarga la página e inténtalo de nuevo.',
+                });
+              }}
+            />
           </div>
 
           <button
